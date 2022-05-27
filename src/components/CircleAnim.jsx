@@ -189,7 +189,6 @@ function Circle({
 				meshTransition.current.scale.x += 0.001;
 		}
 		if (meshTransition.current.scale.y > mesh.current.scale.y) {
-			setTransitionEnded(true);
 			// if(idx === 10) console.log(idx0)
 			setCurrentColors({
 				main: getColorFromRange(
@@ -221,6 +220,7 @@ function Circle({
 					12
 				),
 			});
+			setTransitionEnded(true);
 		}
 	});
 

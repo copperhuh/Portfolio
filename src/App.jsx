@@ -33,6 +33,7 @@ function App() {
 	};
 
 	const cameraControls = useRef(null);
+
 	return (
 		<>
 			<GlobalStyles />
