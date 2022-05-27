@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 
 import useTheme from "../themes";
-import "../App.css";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";
