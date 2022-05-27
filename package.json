@@ -1,7 +1,6 @@
 {
 	"name": "portfolio",
 	"private": true,
-	"homepage": "https://copperhuh.github.io/Portfolio/",
 	"version": "0.0.0",
 	"scripts": {
 		"dev": "vite",
