@@ -144,7 +144,7 @@ const Skull = ({
 		}
 	});
 	//
-	const { nodes } = useLoader(GLTFLoader, "./media/skull/scene.gltf");
+	const { nodes } = useLoader(GLTFLoader, "./skull/scene.gltf");
 	const skull = [];
 	for (let i = 2; i <= 7; i++) {
 		skull.push(
