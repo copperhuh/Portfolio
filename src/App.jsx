@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { Canvas } from "@react-three/fiber";
 
 import Scene from "./components/Scene";

@@ -39,7 +39,20 @@ export const CameraControls = forwardRef((_, ref) => {
 	const cameraControls = useRef(null);
 	const camera = useThree((state) => state.camera);
 	const renderer = useThree((state) => state.gl);
-	useFrame((_, delta) => cameraControls.current?.update(delta));
+	useFrame((_, delta) => {
+		cameraControls.current?.update(delta);
+		if (
+			cameraControls.current &&
+			cameraControls.current.mouseButtons.left !== 0
+		) {
+			cameraControls.current.mouseButtons.left = 0;
+			cameraControls.current.mouseButtons.middle = 0;
+			cameraControls.current.mouseButtons.right = 0;
+			cameraControls.current.mouseButtons.wheel = 0;
+			cameraControls.current.mouseButtons.shiftLeft = 0;
+			cameraControls.current.touches.one = 0;
+		}
+	});
 	useEffect(() => () => cameraControls.current?.dispose(), []);
 	return (
 		<cameraControlsDefault

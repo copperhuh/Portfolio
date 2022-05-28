@@ -86,6 +86,7 @@ export default function About({
 
 	containerBg.push(
 		<div
+			key={7}
 			className="projects-container-main"
 			style={{
 				transform: containerBlur

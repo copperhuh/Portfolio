@@ -306,7 +306,6 @@ export default function Contact({
 							multiline={true}
 							minRows={9}
 							maxRows={9}
-							scroll={true}
 							inputProps={{ maxLength: 1500, name: "message" }}
 							value={formValues.message}
 							onChange={handleChange}

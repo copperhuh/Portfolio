@@ -167,8 +167,10 @@ export default function Work({
 					{projectsData[projectIdx].description}
 				</p>
 				<div className="techs">
-					{projectsData[projectIdx].techs.map((tech) => (
-						<div className="tech">{tech}</div>
+					{projectsData[projectIdx].techs.map((tech, idx) => (
+						<div key={idx} className="tech">
+							{tech}
+						</div>
 					))}
 				</div>
 				<div className="links">
@@ -198,6 +200,7 @@ export default function Work({
 	};
 	containerBg.push(
 		<div
+			key={7}
 			className="projects-container-main"
 			style={{
 				transform: containerBlur

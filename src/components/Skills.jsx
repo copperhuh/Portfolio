@@ -115,6 +115,7 @@ export default function Skills({
 
 	containerBg.push(
 		<div
+			key={7}
 			className="projects-container-main"
 			style={{
 				transform: containerBlur
