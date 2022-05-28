@@ -6,6 +6,8 @@ import Main from "./components/Main";
 import { CameraControls } from "./camera-controls";
 import styled, { createGlobalStyle } from "styled-components";
 import Loading, { LoadingScreen } from "./components/Loading";
+import LandingPage from "./components/LandingPage";
+import { animated, useSpring } from "@react-spring/web";
 
 const GlobalStyles = createGlobalStyle`
 	body,html{
@@ -35,8 +37,20 @@ function App() {
 
 	const cameraControls = useRef(null);
 
+	const [moveSkull, setMoveSkull] = useState(false);
+
 	const [loaded, setLoaded] = useState(false);
 	const [loadScreenOpen, setLoadScreenOpen] = useState(true);
+	const [landingOpen, setLandingOpen] = useState(false);
+	const [fade, setFade] = useState(false);
+
+	const { fadeIn, fadeOut } = useSpring({
+		fadeOut: fade ? 0 : 1,
+		fadeIn: fade ? 1 : 0,
+		config: { duration: 300 },
+
+		onRest: () => (fade ? setLandingOpen(false) : null),
+	});
 
 	return (
 		<>
@@ -46,10 +60,31 @@ function App() {
 				{loadScreenOpen && (
 					<LoadingScreen
 						setLoadScreenOpen={setLoadScreenOpen}
+						setLandingOpen={setLandingOpen}
 						loaded={loaded}
 					/>
 				)}
-				<Main cameraControls={cameraControls} currentIdx={idx0} />
+				{landingOpen && (
+					<animated.div
+						style={{ opacity: fadeOut }}
+						className="fade-in-container over"
+					>
+						<LandingPage
+							cameraControls={cameraControls}
+							setFade={setFade}
+							fade={fade}
+							setMoveSkull={setMoveSkull}
+							setLandingOpen={setLandingOpen}
+						/>
+					</animated.div>
+				)}
+
+				<animated.div
+					style={{ opacity: fadeIn }}
+					className="fade-in-container"
+				>
+					<Main cameraControls={cameraControls} currentIdx={idx0} />
+				</animated.div>
 
 				<React.Suspense fallback={null}>
 					<Canvas
@@ -70,6 +105,7 @@ function App() {
 								idx2={idx2}
 								updateIdx={updateIdx}
 								setLoaded={setLoaded}
+								moveSkull={moveSkull}
 							/>
 						</React.Suspense>
 					</Canvas>
@@ -82,9 +118,21 @@ function App() {
 const AppStyled = styled.div`
 	width: 100vw;
 	height: 100vh;
+	position: relative;
+	.fade-in-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+	}
+	.over {
+		z-index: 5;
+	}
 	.canvas {
 		width: 100vw;
 		height: 100vh;
+		position: relative;
 	}
 `;
 

@@ -15,6 +15,7 @@ const Skull = ({
 	idx0,
 	idx1,
 	updateIdx,
+	moveSkull,
 }) => {
 	const { x } = useSpring({
 		loop: true,
@@ -22,6 +23,7 @@ const Skull = ({
 		from: { x: (Math.PI * 5.5) / 10 },
 		delay: 2,
 		config: { mass: 100, tension: 300, friction: 0 },
+		pause: !moveSkull,
 	});
 
 	const { y } = useSpring({
@@ -30,6 +32,7 @@ const Skull = ({
 		from: { y: (Math.PI * 10.5) / 10 },
 		delay: 2,
 		config: { mass: 100, tension: 250, friction: 0 },
+		pause: !moveSkull,
 	});
 
 	const { z } = useSpring({
@@ -37,6 +40,7 @@ const Skull = ({
 		to: [{ z: (Math.PI * 8) / 4 }, { z: (Math.PI * 9.5) / 4 }],
 		from: { z: (Math.PI * 9.5) / 4 },
 		config: { mass: 100, tension: 100, friction: 0 },
+		pause: !moveSkull,
 	});
 
 	const { v } = useSpring({
@@ -44,6 +48,7 @@ const Skull = ({
 		to: [{ v: 2 }, { v: 1.8 }],
 		from: { v: 1.8 },
 		config: { mass: 20, tension: 100, friction: 0 },
+		pause: !moveSkull,
 	});
 
 	const [active, setActive] = useState(false);
@@ -77,7 +82,7 @@ const Skull = ({
 	// };
 
 	const handleClick = (e) => {
-		if (transitionOngoing) return;
+		if (transitionOngoing || !moveSkull) return;
 		e.stopPropagation();
 		setTransitionOngoing(true);
 		setActive(true);
@@ -144,6 +149,7 @@ const Skull = ({
 		}
 	});
 	//
+
 	const { nodes } = useLoader(GLTFLoader, "./skull/scene.gltf");
 	const skull = [];
 	for (let i = 2; i <= 7; i++) {

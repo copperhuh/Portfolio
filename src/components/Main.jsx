@@ -24,7 +24,7 @@ export default function Main({ cameraControls, currentIdx }) {
 		setTimeout(() => {
 			setPrevSection(section);
 			setSection(sectionName);
-
+			cameraControls.current.zoomTo(1);
 			if (sectionName === "ABOUT") {
 				cameraControls.current.setLookAt(
 					7.812,
@@ -86,18 +86,18 @@ export default function Main({ cameraControls, currentIdx }) {
 				);
 			} else {
 				cameraControls.current.setLookAt(2, 2, 6, 0, 0, 0, false);
+				// cameraControls.current.setLookAt(2, 3, 6, 0, 1, 0, false);
+				// cameraControls.current.zoomTo(100);
 			}
 		}, 200);
 	};
 	return (
 		<MainStyled>
-			{/* <div className="header"> */}
 			<Header
 				contrastColor={colors[currentIdx].contrastColor}
 				section={section}
 				transition={transition}
 			/>
-			{/* </div> */}
 			<div className="content">
 				{section === "SKILLS" ? (
 					<Skills

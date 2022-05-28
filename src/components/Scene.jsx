@@ -38,7 +38,7 @@ function Box({ position, rotation, args }) {
 	);
 }
 
-function Scene({ idx0, idx1, idx2, updateIdx, setLoaded }) {
+function Scene({ idx0, idx1, idx2, updateIdx, setLoaded, moveSkull }) {
 	const [transitionOngoing, setTransitionOngoing] = useState(false);
 	const [mainColor, setMainColor] = useState(true);
 	const [transitionColor, setTransitionColor] = useState(true);
@@ -116,6 +116,7 @@ function Scene({ idx0, idx1, idx2, updateIdx, setLoaded }) {
 					idx0={idx0}
 					idx1={idx1}
 					updateIdx={updateIdx}
+					moveSkull={moveSkull}
 				/>
 			</React.Suspense>
 			{/* </Canvas> */}

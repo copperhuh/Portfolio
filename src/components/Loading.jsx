@@ -8,27 +8,38 @@ export default function Loading({ setLoaded }) {
 	}, []);
 	return;
 }
-export function LoadingScreen({ setLoadScreenOpen, loaded }) {
+export function LoadingScreen({ setLoadScreenOpen, loaded, setLandingOpen }) {
 	const [expand, setExpand] = useState(false);
+	const [fade, setFade] = useState(false);
 	const { textOpacity } = useSpring({
 		textOpacity: loaded ? 0 : 1,
-		onRest: () => (loaded ? setExpand(true) : null),
+		onRest: () => {
+			if (loaded) {
+				setExpand(true);
+				setLandingOpen(true);
+			}
+		},
 	});
 	const { orbWidth, orbHeight, orbBorderRadius } = useSpring({
 		orbWidth: expand ? document.body.clientWidth * 1.5 + "px" : "350px",
 		orbHeight: expand ? document.body.clientHeight * 1.5 + "px" : "350px",
 		orbBorderRadius: expand ? "0%" : "100%",
-		// config: { mass: 1, tension: 120, friction: 14 },
-		onRest: () => (expand ? setLoadScreenOpen(false) : null),
+		onRest: () => (expand ? setFade(true) : null),
+	});
+	const { opacityAll } = useSpring({
+		opacityAll: fade ? 0 : 1,
+		config: { duration: 2000 },
+		onRest: () => (fade ? setLoadScreenOpen(false) : null),
 	});
 
 	return (
-		<LoadingStyled expand={expand}>
+		<LoadingStyled expand={expand} fade={fade}>
 			<animated.div
 				style={{
 					width: orbWidth,
 					height: orbHeight,
 					borderRadius: orbBorderRadius,
+					opacity: opacityAll,
 				}}
 				className="container"
 			>
@@ -61,7 +72,8 @@ const LoadingStyled = styled.div`
 	}, */
 
 	//
-	background: radial-gradient(#171a18, #171a18);
+	background: ${(props) =>
+		props.fade ? "none" : "radial-gradient(#171a18, #171a18)"};
 	display: flex;
 	justify-content: center;
 	align-items: center;
