@@ -5,7 +5,7 @@ import Scene from "./components/Scene";
 import Main from "./components/Main";
 import { CameraControls } from "./camera-controls";
 import styled, { createGlobalStyle } from "styled-components";
-import Loading from "./components/Loading";
+import Loading, { LoadingScreen } from "./components/Loading";
 
 const GlobalStyles = createGlobalStyle`
 	body,html{
@@ -35,13 +35,23 @@ function App() {
 
 	const cameraControls = useRef(null);
 
+	const [loaded, setLoaded] = useState(false);
+	const [loadScreenOpen, setLoadScreenOpen] = useState(true);
+
 	return (
 		<>
 			<GlobalStyles />
 			<AppStyled>
+				{/* {true && <LoadingScreen />} */}
+				{loadScreenOpen && (
+					<LoadingScreen
+						setLoadScreenOpen={setLoadScreenOpen}
+						loaded={loaded}
+					/>
+				)}
 				<Main cameraControls={cameraControls} currentIdx={idx0} />
 
-				<React.Suspense fallback={<Loading />}>
+				<React.Suspense fallback={null}>
 					<Canvas
 						className="canvas"
 						shadows
@@ -59,6 +69,7 @@ function App() {
 								idx1={idx1}
 								idx2={idx2}
 								updateIdx={updateIdx}
+								setLoaded={setLoaded}
 							/>
 						</React.Suspense>
 					</Canvas>

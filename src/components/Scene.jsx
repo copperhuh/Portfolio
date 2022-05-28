@@ -7,6 +7,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";
 import CirclesAnim from "./CircleAnim";
 import Skull from "./Skull";
+import Loading from "./Loading";
 
 const CameraController = () => {
 	const { camera, gl } = useThree();
@@ -37,7 +38,7 @@ function Box({ position, rotation, args }) {
 	);
 }
 
-function Scene({ idx0, idx1, idx2, updateIdx }) {
+function Scene({ idx0, idx1, idx2, updateIdx, setLoaded }) {
 	const [transitionOngoing, setTransitionOngoing] = useState(false);
 	const [mainColor, setMainColor] = useState(true);
 	const [transitionColor, setTransitionColor] = useState(true);
@@ -102,7 +103,7 @@ function Scene({ idx0, idx1, idx2, updateIdx }) {
 					args={[10, 0, 10]}
 				/>
 			</group> */}
-			<React.Suspense fallback={null}>
+			<React.Suspense fallback={<Loading setLoaded={setLoaded} />}>
 				<group>{animation}</group>
 				<Skull
 					themes={themes}

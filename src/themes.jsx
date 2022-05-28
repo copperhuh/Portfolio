@@ -16,6 +16,7 @@ import map8Url from "./textures/Ice.jpg";
 import lightMap8Url from "./textures/Ice_displacement.jpg";
 import roughnessMap8Url from "./textures/Ice_roughness.jpg";
 import emptyUrl from "./textures/empty.png";
+import React from "react";
 
 export const colors = [
 	{
@@ -385,6 +386,7 @@ const useTheme = () => {
 			),
 		},
 	];
+
 	return themes;
 };
 export default useTheme;
