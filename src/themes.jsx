@@ -20,7 +20,8 @@ import React from "react";
 
 export const colors = [
 	{
-		mainColor: "#4B8B70",
+		// mainColor: "#4B8B70",
+		mainColor: "#68ab8e",
 		secondaryColor: "#212523",
 		contrastColor: "#D2D1C9",
 	},
@@ -46,13 +47,13 @@ export const colors = [
 		contrastColor: "#212523",
 	},
 	{
-		mainColor: "#BCBAB0",
+		mainColor: "#8C8D84",
 		secondaryColor: "#282D2A",
 		contrastColor: "#D2D1C9",
 	},
 	{
 		secondaryColor: "#282D2A",
-		mainColor: "#9333A9",
+		mainColor: "#BE4DC3",
 		contrastColor: "#D2D1C9",
 	},
 	{

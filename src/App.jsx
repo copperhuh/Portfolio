@@ -24,7 +24,7 @@ function App() {
 	const [idx2, setIdx2] = useState(2);
 
 	const updateIdx = () => {
-		if (idx2 === 13) {
+		if (idx2 === 12) {
 			setIdx0(idx1);
 			setIdx1(idx2);
 			setIdx2(0);
@@ -51,7 +51,9 @@ function App() {
 
 		onRest: () => (fade ? setLandingOpen(false) : null),
 	});
-
+	useEffect(() => {
+		console.log(loadScreenOpen);
+	}, [loadScreenOpen]);
 	return (
 		<>
 			<GlobalStyles />

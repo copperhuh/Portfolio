@@ -12,14 +12,19 @@ export default function LandingPage({
 		cameraControls.current.setLookAt(2, 3, 6, 0, 1, 0, false);
 		cameraControls.current.zoomTo(50, false);
 	}, []);
+	const [reverseFlag, setReverseFlag] = useState(false);
 
 	const fadeOut = (e) => {
-		e.stopPropagation();
-		if (fade) return;
-		setFade(true);
-		setMoveSkull(true);
-		cameraControls.current.setLookAt(2, 2, 6, 0, 0, 0, true);
-		cameraControls.current.zoomTo(1, true);
+		if (!reverseFlag) {
+			setReverseFlag(true);
+			setN(n - 1);
+		}
+		// e.stopPropagation();
+		// if (fade) return;
+		// setFade(true);
+		// setMoveSkull(true);
+		// cameraControls.current.setLookAt(2, 2, 6, 0, 0, 0, true);
+		// cameraControls.current.zoomTo(1, true);
 		console.log("aaa");
 		// setTimeout(() => {
 		// 	console.log("bbb");
@@ -30,11 +35,23 @@ export default function LandingPage({
 	const [n, setN] = useState(0);
 	useEffect(() => {
 		setTimeout(() => {
-			if (n === h2.length + 2 + h3.length) return;
-			console.log("ccc");
-			setN(n + 1);
+			if (reverseFlag) {
+				if (n === 0) {
+					setFade(true);
+					setMoveSkull(true);
+					cameraControls.current.setLookAt(2, 2, 6, 0, 0, 0, true);
+					cameraControls.current.zoomTo(1, true);
+					return;
+				}
+				console.log("ddd");
+				setN(n - 1);
+			} else {
+				if (n === h2.length + 2 + h3.length) setReverseFlag(true);
+				console.log("ccc");
+				setN(n + 1);
+			}
 		}, 50);
-	}, [n]);
+	}, [n, reverseFlag]);
 
 	const h2 = "Jakub Koper".split("");
 	const h3 = "Front End Developer".split("");
