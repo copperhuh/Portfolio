@@ -102,19 +102,21 @@ function Scene({ idx0, idx1, idx2, updateIdx }) {
 					args={[10, 0, 10]}
 				/>
 			</group> */}
-			<group>{animation}</group>
-			<Skull
-				themes={themes}
-				transitionOngoing={transitionOngoing}
-				setTransitionOngoing={setTransitionOngoing}
-				mainColor={mainColor}
-				setMainColor={setMainColor}
-				transitionColor={transitionColor}
-				setTransitionColor={setTransitionColor}
-				idx0={idx0}
-				idx1={idx1}
-				updateIdx={updateIdx}
-			/>
+			<React.Suspense fallback={null}>
+				<group>{animation}</group>
+				<Skull
+					themes={themes}
+					transitionOngoing={transitionOngoing}
+					setTransitionOngoing={setTransitionOngoing}
+					mainColor={mainColor}
+					setMainColor={setMainColor}
+					transitionColor={transitionColor}
+					setTransitionColor={setTransitionColor}
+					idx0={idx0}
+					idx1={idx1}
+					updateIdx={updateIdx}
+				/>
+			</React.Suspense>
 			{/* </Canvas> */}
 		</>
 	);

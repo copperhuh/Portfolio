@@ -5,6 +5,7 @@ import Scene from "./components/Scene";
 import Main from "./components/Main";
 import { CameraControls } from "./camera-controls";
 import styled, { createGlobalStyle } from "styled-components";
+import Loading from "./components/Loading";
 
 const GlobalStyles = createGlobalStyle`
 	body,html{
@@ -40,24 +41,28 @@ function App() {
 			<AppStyled>
 				<Main cameraControls={cameraControls} currentIdx={idx0} />
 
-				<Canvas
-					className="canvas"
-					shadows
-					camera={{
-						fov: 80,
-						near: 0.1,
-						far: 1000,
-						position: [2, 2, 6],
-					}}
-				>
-					<CameraControls ref={cameraControls} />
-					<Scene
-						idx0={idx0}
-						idx1={idx1}
-						idx2={idx2}
-						updateIdx={updateIdx}
-					/>
-				</Canvas>
+				<React.Suspense fallback={<Loading />}>
+					<Canvas
+						className="canvas"
+						shadows
+						camera={{
+							fov: 80,
+							near: 0.1,
+							far: 1000,
+							position: [2, 2, 6],
+						}}
+					>
+						<CameraControls ref={cameraControls} />
+						<React.Suspense fallback={null}>
+							<Scene
+								idx0={idx0}
+								idx1={idx1}
+								idx2={idx2}
+								updateIdx={updateIdx}
+							/>
+						</React.Suspense>
+					</Canvas>
+				</React.Suspense>
 			</AppStyled>
 		</>
 	);

@@ -164,9 +164,13 @@ const Skull = ({
 			>
 				{/* {mainColor ? currentMaterial : nextMaterial} */}
 				{mainColor
-					? themes[idx0].material(
-							currentColorArrays.main[colorCounter]
-					  )
+					? themes[idx0].skullMaterial
+						? themes[idx0].material
+						: themes[idx0].material(
+								currentColorArrays.main[colorCounter]
+						  )
+					: themes[idx1].skullMaterial
+					? themes[idx1].material
 					: themes[idx1].material(
 							currentColorArrays.sub[colorCounter]
 					  )}
@@ -194,7 +198,11 @@ const Skull = ({
 			>
 				{/* {nextMaterial} */}
 				{/* {themes[idx1].material} */}
-				{themes[idx1].material(currentColorArrays.sub[colorCounter])}
+				{themes[idx1].skullMaterial
+					? themes[idx1].material
+					: themes[idx1].material(
+							currentColorArrays.sub[colorCounter]
+					  )}
 			</animated.mesh>
 		);
 	}

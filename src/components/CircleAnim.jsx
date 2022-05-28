@@ -77,6 +77,7 @@ function Circle({
 					Math.floor(N / 2),
 					12
 				),
+				material: themes[idx0].wallMaterial,
 				transitionMain: getColorFromRange(
 					themes[idx1].color,
 					themes[idx1].colorEnd,
@@ -91,6 +92,7 @@ function Circle({
 					Math.floor(N / 2),
 					12
 				),
+				transitionMaterial: themes[idx1].wallMaterial,
 			});
 		}
 	}, [transitionEnded]);
@@ -205,6 +207,7 @@ function Circle({
 					Math.floor(N / 2),
 					12
 				),
+				material: themes[idx0].wallMaterial,
 				transitionMain: getColorFromRange(
 					themes[idx1].color,
 					themes[idx1].colorEnd,
@@ -219,6 +222,7 @@ function Circle({
 					Math.floor(N / 2),
 					12
 				),
+				transitionMaterial: themes[idx1].wallMaterial,
 			});
 			setTransitionEnded(true);
 		}
@@ -311,8 +315,8 @@ function Circle({
 					factor={0.6}
 				/> */}
 				{main ? (
-					themes[themeIdx].wallMaterial ? (
-						themes[themeIdx].material(null)
+					currentColors.material ? (
+						<meshNormalMaterial />
 					) : (
 						<meshLambertMaterial
 							attach="material"
@@ -364,13 +368,15 @@ function Circle({
 					factor={0.6}
 				/> */}
 				{main ? (
-					themes[nextThemeIdx].wallMaterial ? (
-						themes[nextThemeIdx].materialType === "normal" ? (
-							<meshNormalMaterial visible={!transitionEnded} />
-						) : (
-							<meshDistanceMaterial visible={!transitionEnded} />
-						)
+					currentColors.transitionMaterial ? (
+						<meshNormalMaterial visible={!transitionEnded} />
 					) : (
+						// themes[nextThemeIdx].wallMaterial ? (
+						// 	themes[nextThemeIdx].materialType === "normal" ? (
+						// 		<meshNormalMaterial visible={!transitionEnded} />
+						// 	) : (
+						// 		<meshDistanceMaterial visible={!transitionEnded} />
+						// 	)
 						<meshLambertMaterial
 							visible={!transitionEnded}
 							attach="material"
