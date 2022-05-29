@@ -1,3 +1,4 @@
+import { useThree } from "@react-three/fiber";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -32,18 +33,18 @@ export default function LandingPage({
 		// }, 600);
 	};
 
-	const [zoomFlag, setZoomFlag] = useState(false);
-	useEffect(() => {
-		setTimeout(() => {
-			if (reverseFlag) return;
-			if (zoomFlag) {
-				cameraControls.current.zoomTo(45, true);
-			} else {
-				cameraControls.current.zoomTo(50, true);
-			}
-			setZoomFlag(!zoomFlag);
-		}, 100);
-	}, [zoomFlag]);
+	// const [zoomFlag, setZoomFlag] = useState(false);
+	// useEffect(() => {
+	// 	setTimeout(() => {
+	// 		if (reverseFlag) return;
+	// 		if (zoomFlag) {
+	// 			cameraControls.current.zoomTo(45, true);
+	// 		} else {
+	// 			cameraControls.current.zoomTo(50, true);
+	// 		}
+	// 		setZoomFlag(!zoomFlag);
+	// 	}, 100);
+	// }, [zoomFlag]);
 
 	const [n, setN] = useState(0);
 	useEffect(() => {

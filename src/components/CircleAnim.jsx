@@ -7,7 +7,7 @@ function Circle({
 	themes,
 	position,
 	rotation,
-	args,
+	geometry,
 	main,
 	init,
 	transitionOngoing,
@@ -304,7 +304,7 @@ function Circle({
 				ref={mesh}
 				rotation={rotation}
 			>
-				<circleBufferGeometry args={args} />
+				{geometry}
 				{/* <meshLambertMaterial
 					attach="material"
 					color={
@@ -356,7 +356,7 @@ function Circle({
 				ref={meshTransition}
 				rotation={rotation}
 			>
-				<circleBufferGeometry args={args} />
+				{geometry}
 				{/* <meshLambertMaterial
 					visible={!transitionEnded}
 					attach="material"
@@ -425,6 +425,7 @@ export default function CirclesAnim({
 	idx0,
 	idx1,
 	idx,
+	geometry,
 }) {
 	return (
 		<>
@@ -432,7 +433,7 @@ export default function CirclesAnim({
 				themes={themes}
 				position={[0.001, 0, 0]}
 				rotation={[0, Math.PI / 4, 0]}
-				args={[5, 150]}
+				geometry={geometry}
 				main={main}
 				init={init}
 				initials={initials}
@@ -448,7 +449,7 @@ export default function CirclesAnim({
 				themes={themes}
 				position={[-0.001, 0, 0]}
 				rotation={[0, (Math.PI * 7) / 4, 0]}
-				args={[5, 150]}
+				geometry={geometry}
 				main={main}
 				init={init}
 				initials={initials}
@@ -464,7 +465,7 @@ export default function CirclesAnim({
 				themes={themes}
 				position={[0, 0.001, 0]}
 				rotation={[(Math.PI * 3) / 2, 0, 0]}
-				args={[5, 150]}
+				geometry={geometry}
 				main={main}
 				init={init}
 				initials={initials}

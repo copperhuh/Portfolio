@@ -39,6 +39,11 @@ export const CameraControls = forwardRef((_, ref) => {
 	const cameraControls = useRef(null);
 	const camera = useThree((state) => state.camera);
 	const renderer = useThree((state) => state.gl);
+	const { invalidate } = useThree();
+	useEffect(() => {
+		ref.current.addEventListener("change", invalidate);
+		return () => ref.current.removeEventListener("change", invalidate);
+	}, []);
 	useFrame((_, delta) => {
 		cameraControls.current?.update(delta);
 		if (
@@ -51,6 +56,8 @@ export const CameraControls = forwardRef((_, ref) => {
 			cameraControls.current.mouseButtons.wheel = 0;
 			cameraControls.current.mouseButtons.shiftLeft = 0;
 			cameraControls.current.touches.one = 0;
+			cameraControls.current.touches.two = 0;
+			cameraControls.current.touches.three = 0;
 		}
 	});
 	useEffect(() => () => cameraControls.current?.dispose(), []);

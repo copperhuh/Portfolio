@@ -8,6 +8,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import Loading, { LoadingScreen } from "./components/Loading";
 import LandingPage from "./components/LandingPage";
 import { animated, useSpring } from "@react-spring/web";
+import { AdaptiveDpr, AdaptiveEvents, Preload } from "@react-three/drei";
 
 const GlobalStyles = createGlobalStyle`
 	body,html{
@@ -109,6 +110,7 @@ function App() {
 								setLoaded={setLoaded}
 								moveSkull={moveSkull}
 							/>
+							<Preload all />
 						</React.Suspense>
 					</Canvas>
 				</React.Suspense>

@@ -8,6 +8,7 @@ import * as THREE from "three";
 import CirclesAnim from "./CircleAnim";
 import Skull from "./Skull";
 import Loading from "./Loading";
+import { AdaptiveDpr, AdaptiveEvents } from "@react-three/drei";
 
 const CameraController = () => {
 	const { camera, gl } = useThree();
@@ -52,6 +53,8 @@ function Scene({ idx0, idx1, idx2, updateIdx, setLoaded, moveSkull }) {
 		initials.push((WIDTH / N) * i - 1 / N, (WIDTH / N) * i);
 	}
 	let animation = [];
+	// const circleGeometry = new THREE.CircleBufferGeometry(5, 150);
+	const circleGeometry = <circleBufferGeometry args={[5, 150]} />;
 	for (let i = 1; i <= N; i++) {
 		animation.push(
 			<CirclesAnim
@@ -68,9 +71,14 @@ function Scene({ idx0, idx1, idx2, updateIdx, setLoaded, moveSkull }) {
 				idx0={idx0}
 				idx1={idx1}
 				idx2={idx2}
+				geometry={circleGeometry}
 			/>
 		);
 	}
+	const regress = useThree((state) => state.performance.regress);
+	useEffect(() => {
+		regress();
+	}, []);
 	return (
 		// <Canvas
 		// 	className="canvas"
@@ -118,6 +126,8 @@ function Scene({ idx0, idx1, idx2, updateIdx, setLoaded, moveSkull }) {
 					updateIdx={updateIdx}
 					moveSkull={moveSkull}
 				/>
+				<AdaptiveDpr pixelated />
+				<AdaptiveEvents />
 			</React.Suspense>
 			{/* </Canvas> */}
 		</>
