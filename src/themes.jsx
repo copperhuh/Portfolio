@@ -201,8 +201,8 @@ const useTheme = () => {
 			colorEnd: "#86D9BD",
 			wallMaterial: false,
 			skullMaterial: false,
-			material: (color) => <meshMatcapMaterial color={color} />,
-			// material:(color)=> <meshMatcapMaterial color={"#68ab8e"} />,
+			// material: (color) => <meshMatcapMaterial color={color} />,
+			material: <meshMatcapMaterial color={"#68ab8e"} />,
 		},
 		{
 			secondaryColor: "#D2D1C9",
@@ -220,13 +220,13 @@ const useTheme = () => {
 			colorEnd: "#B03350",
 			wallMaterial: false,
 			skullMaterial: false,
-			material: (color) => (
+			material: (
 				<meshStandardMaterial
-					color={color}
-					// color={"#e34267"}
+					// color={color}
+					color="#e34267"
 					roughnessMap={roughnessMap2}
 					map={empty}
-					// aoMap={empty}
+					aoMap={empty}
 				/>
 			),
 		},
@@ -239,10 +239,10 @@ const useTheme = () => {
 			skullMaterial: true,
 			material: (
 				<meshStandardMaterial
-					// color={null}
+					color={"white"}
 					map={map6}
 					roughnessMap={roughnessMap6}
-					// lightMap={empty}
+					lightMap={empty}
 					aoMap={empty}
 				/>
 			),
@@ -254,13 +254,13 @@ const useTheme = () => {
 			colorEnd: "#FDC456",
 			wallMaterial: false,
 			skullMaterial: false,
-			material: (color) => (
+			material: (
 				<meshStandardMaterial
-					color={color}
-					// color={"#fba063"}
+					// color={color}
+					color={"#fba063"}
 					roughnessMap={roughnessMap2}
-					// map={empty}
-					// aoMap={empty}
+					map={empty}
+					aoMap={empty}
 				/>
 			),
 		},
@@ -288,15 +288,15 @@ const useTheme = () => {
 			colorEnd: "#D64BC8",
 			wallMaterial: false,
 			skullMaterial: false,
-			material: (color) => (
+			material: (
 				<meshStandardMaterial
-					color={color}
-					// color={"#a64dbf"}
+					// color={color}
+					color={"#a64dbf"}
 					metalness={1}
 					roughness={0.5}
-					// map={empty}
-					// roughnessMap={empty}
-					// metalnessMap={empty}
+					map={empty}
+					roughnessMap={empty}
+					metalnessMap={empty}
 				/>
 			),
 		},
@@ -340,8 +340,8 @@ const useTheme = () => {
 			colorEnd: "#FA8289",
 			wallMaterial: false,
 			skullMaterial: false,
-			// material:(color)=> <meshMatcapMaterial color={"#f38bf5"} />,
-			material: (color) => <meshMatcapMaterial color={color} />,
+			material: <meshMatcapMaterial color={"#f38bf5"} />,
+			// material: (color) => <meshMatcapMaterial color={color} />,
 		},
 		{
 			secondaryColor: "#b7bebd",
@@ -369,8 +369,8 @@ const useTheme = () => {
 			colorEnd: "#2CCBDB",
 			wallMaterial: false,
 			skullMaterial: false,
-			material: (color) => <meshMatcapMaterial color={color} />,
-			// material:(color)=> <meshMatcapMaterial color={"#3c9df1"} />,
+			// material: (color) => <meshMatcapMaterial color={color} />,
+			material: <meshMatcapMaterial color={"#3c9df1"} />,
 		},
 		{
 			secondaryColor: "#768591",

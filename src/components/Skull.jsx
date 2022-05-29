@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSpring, animated } from "@react-spring/three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useTexture } from "@react-three/drei";
@@ -103,52 +103,56 @@ const Skull = ({
 		}, 300);
 	};
 	//
-	const [currentColorArrays, setCurrentColorArrays] = useState({
-		main: [],
-		sub: [],
-	});
-	useEffect(() => {
-		const main = getColorFromRange(
-			themes[idx0].color,
-			themes[idx0].colorEnd,
-			0,
-			1000,
-			1000,
-			"all"
-		);
-		const sub = getColorFromRange(
-			themes[idx1].color,
-			themes[idx1].colorEnd,
-			0,
-			1000,
-			1000,
-			"all"
-		);
-		setCurrentColorArrays({
-			main,
-			sub,
-		});
-	}, [idx0]);
-	const [colorCounter, setColorCounter] = useState(0);
-	useFrame(() => {
-		// console.log(
-		// 	"aaaaaaaa",
-		// 	colorCounter,
-		// 	getColorFromRange(
-		// 		"#3c98e8",
-		// 		"#0969bd",
-		// 		colorCounter,
-		// 		Math.ceil(100 / 2),
-		// 		Math.ceil(100 / 2)
-		// 	)
-		// );
-		if (colorCounter >= 1000) {
-			setColorCounter(0);
-		} else {
-			setColorCounter((prev) => prev + 1);
-		}
-	});
+	// const [currentColor, setCurrentColor] = useState({
+	// 	main: [],
+	// 	sub: [],
+	// });
+	// useEffect(() => {
+	// 	const main = getColorFromRange(
+	// 		themes[idx0].color,
+	// 		themes[idx0].colorEnd,
+	// 		0,
+	// 		1000,
+	// 		1000,
+	// 		"avrage"
+	// 	);
+	// 	const sub = getColorFromRange(
+	// 		themes[idx1].color,
+	// 		themes[idx1].colorEnd,
+	// 		0,
+	// 		1000,
+	// 		1000,
+	// 		"avrage"
+	// 	);
+	// 	setCurrentColor({
+	// 		main,
+	// 		sub,
+	// 	});
+	// }, [idx0]);
+	// const [colorCounter, setColorCounter] = useState(0);
+	// useFrame(() => {
+	// 	// console.log(
+	// 	// 	"aaaaaaaa",
+	// 	// 	colorCounter,
+	// 	// 	getColorFromRange(
+	// 	// 		"#3c98e8",
+	// 	// 		"#0969bd",
+	// 	// 		colorCounter,
+	// 	// 		Math.ceil(100 / 2),
+	// 	// 		Math.ceil(100 / 2)
+	// 	// 	)
+	// 	// );
+	// 	if (colorCounter >= 1000) {
+	// 		setColorCounter(0);
+	// 	} else {
+	// 		setColorCounter((prev) => prev + 1);
+	// 	}
+	// });
 	//
+	// const material = useMemo(
+	// 	mainColor ? themes[idx0].material : themes[idx1].material,
+	// 	[mainColor, idx0, idx1]
+	// );
 
 	const { nodes } = useLoader(GLTFLoader, "./skull/scene.gltf");
 	const skull = [];
@@ -156,7 +160,7 @@ const Skull = ({
 		skull.push(
 			<animated.mesh
 				key={i}
-				castShadow
+				// castShadow
 				renderOrder={999}
 				geometry={nodes[`Object_${i}`].geometry}
 				position-x={0.5}
@@ -167,20 +171,18 @@ const Skull = ({
 				rotation-z={z}
 				scale={scale}
 				///
+				// material={material}
 			>
 				{/* {mainColor ? currentMaterial : nextMaterial} */}
-				{mainColor
+				{/* {mainColor
 					? themes[idx0].skullMaterial
 						? themes[idx0].material
-						: themes[idx0].material(
-								currentColorArrays.main[colorCounter]
-						  )
+						: themes[idx0].material(currentColor.main)
 					: themes[idx1].skullMaterial
 					? themes[idx1].material
-					: themes[idx1].material(
-							currentColorArrays.sub[colorCounter]
-					  )}
-				{/* {mainColor ? themes[idx0].material : themes[idx1].material} */}
+					: themes[idx1].material(currentColor.sub)} */}
+				{mainColor ? themes[idx0].material : themes[idx1].material}
+				{/* {material} */}
 			</animated.mesh>
 		);
 	}
@@ -191,7 +193,7 @@ const Skull = ({
 		skullTransition.push(
 			<animated.mesh
 				key={i}
-				castShadow
+				// castShadow
 				renderOrder={999}
 				geometry={nodes[`Object_${i}`].geometry}
 				position-x={0.5}
@@ -203,12 +205,10 @@ const Skull = ({
 				scale={scaleTransition}
 			>
 				{/* {nextMaterial} */}
-				{/* {themes[idx1].material} */}
-				{themes[idx1].skullMaterial
+				{themes[idx1].material}
+				{/* {themes[idx1].skullMaterial
 					? themes[idx1].material
-					: themes[idx1].material(
-							currentColorArrays.sub[colorCounter]
-					  )}
+					: themes[idx1].material(currentColor.sub)} */}
 			</animated.mesh>
 		);
 	}
