@@ -32,22 +32,48 @@ export default function LandingPage({
 		// }, 600);
 	};
 
-	const [n, setN] = useState(0);
+	const [zoomFlag, setZoomFlag] = useState(false);
 	useEffect(() => {
 		setTimeout(() => {
+			if (reverseFlag) return;
+			if (zoomFlag) {
+				cameraControls.current.zoomTo(45, true);
+				console.log("eee1");
+			} else {
+				cameraControls.current.zoomTo(50, true);
+				console.log("eee2");
+			}
+			setZoomFlag(!zoomFlag);
+		}, 100);
+	}, [zoomFlag]);
+
+	const [n, setN] = useState(0);
+	useEffect(() => {
+		setTimeout(async () => {
 			if (reverseFlag) {
 				if (n === 0) {
-					setFade(true);
-					setMoveSkull(true);
-					cameraControls.current.setLookAt(2, 2, 6, 0, 0, 0, true);
-					cameraControls.current.zoomTo(1, true);
+					setTimeout(async () => {
+						setFade(true);
+						setMoveSkull(true);
+						await cameraControls.current.zoomTo(1, true);
+						await cameraControls.current.setLookAt(
+							2,
+							2,
+							6,
+							0,
+							0,
+							0,
+							true
+						);
+					}, 300);
 					return;
 				}
-				console.log("ddd");
+				// console.log("ddd");
 				setN(n - 1);
 			} else {
-				if (n === h2.length + 2 + h3.length) setReverseFlag(true);
-				console.log("ccc");
+				if (n === h2.length + 2 + h3.length) return;
+				// if (n === h2.length + 2 + h3.length + 3) setReverseFlag(true);
+				// console.log("ccc");
 				setN(n + 1);
 			}
 		}, 50);

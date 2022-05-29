@@ -9,6 +9,11 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { animated, useSpring } from "@react-spring/web";
 
+import sortDemonSS from "../screenshots/ss-sort-demon.png";
+import pathDemonSS from "../screenshots/ss-path-demon.png";
+import warSS from "../screenshots/ss-war.png";
+import portfolioSS from "../screenshots/ss-portfolio.png";
+
 export default function Work({
 	contrastColor,
 	transition,
@@ -96,7 +101,7 @@ export default function Work({
 			subtitle: "Featured Project",
 			title: "SORT DEMON",
 			description:
-				"Visualizer of 30+ unique sorting algorithms, allowing for custom delay time and input array size.",
+				"Visualizer of 30+ unique sorting algorithms, allowing for custom delay time and input array size. Explanations of each algoritm are also included.",
 			techs: [
 				"React",
 				"Redux",
@@ -104,7 +109,8 @@ export default function Work({
 				"Material UI",
 				"Styled Components",
 			],
-			img: "https://github.com/copperhuh/SortDemon/raw/main/screenshots/Screenshot-1.png?raw=true",
+			img: sortDemonSS,
+			// img: "https://github.com/copperhuh/SortDemon/raw/main/screenshots/Screenshot-1.png?raw=true",
 			live: "https://copperhuh.github.io/SortDemon/",
 			github: "https://github.com/copperhuh/SortDemon",
 		},
@@ -112,7 +118,7 @@ export default function Work({
 			subtitle: "Featured Project",
 			title: "PATH DEMON",
 			description:
-				"A responsive visualizer of maze generation and pathfinding algorithms. It succeeds at making the process of understanding maze generation and pathfinding easy and visually interesting.",
+				"A responsive visualizer of maze generation and pathfinding algorithms. It succeeds at making the process of understanding these algorithms easy and visually interesting.",
 			techs: [
 				"React",
 				"Redux",
@@ -120,30 +126,36 @@ export default function Work({
 				"Material UI",
 				"Styled Components",
 			],
-			img: "https://github.com/copperhuh/PathDemon/raw/master/screenshots/screenshot-1.png?raw=true",
+			img: pathDemonSS,
+			// img: "https://github.com/copperhuh/PathDemon/raw/master/screenshots/screenshot-1.png?raw=true",
 			live: "https://copperhuh.github.io/PathDemon/",
 			github: "https://github.com/copperhuh/PathDemon",
 		},
 		{
 			subtitle: "Featured Project",
 			title: "WAR",
-			description: "Simulation of the war card game",
+			description:
+				"Simulation of the war card game, built only with vanilla JavaScript, HTML and CSS.",
 			techs: ["JavaScript", "CSS", "HTML"],
-			img: "https://github.com/copperhuh/PathDemon/raw/master/screenshots/screenshot-1.png?raw=true",
+			img: warSS,
+			// img: "https://github.com/copperhuh/PathDemon/raw/master/screenshots/screenshot-1.png?raw=true",
 			live: "https://copperhuh.github.io/PathDemon/",
 			github: "https://github.com/copperhuh/WAR",
 		},
 		{
 			subtitle: "Featured Project",
 			title: "PORTFOLIO",
-			description: "Simulation of the war card game",
+			description:
+				"My own original portfolio page, heavily utilizing React Three Fiber and use-Spring",
 			techs: [
 				"React",
 				"React Three Fiber",
+				"Vite",
 				"use-Spring",
 				"Styled Components",
 			],
-			img: "https://github.com/copperhuh/PathDemon/raw/master/screenshots/screenshot-1.png?raw=true",
+			img: portfolioSS,
+			// img: "https://github.com/copperhuh/PathDemon/raw/master/screenshots/screenshot-1.png?raw=true",
 			live: "https://copperhuh.github.io/PathDemon/",
 			github: "https://github.com/copperhuh/WAR",
 		},
@@ -497,7 +509,11 @@ const WorkStyled = styled.div`
 			grid-row: 3/7; */
 			width: 70%;
 			background: ${(props) => `url(${props.url}) no-repeat`};
-			background-size: cover;
+			background-color: #151515;
+			/* background-color: ${(props) => props.colors.contrastColor}; */
+			background-size: contain;
+			background-position: center;
+			/* background: #4b8c7170; */
 			/* img {
 				width: 100%;
 				height: 100%;
@@ -509,7 +525,7 @@ const WorkStyled = styled.div`
 				content: "";
 				width: 100%;
 				height: 100%;
-				background: ${(props) => props.colors.mainColor + "70"};
+				background: ${(props) => props.colors.mainColor + "50"};
 				/* background: #4b8c7170; */
 				top: 0;
 				left: 0;

@@ -28,7 +28,7 @@ export function LoadingScreen({ setLoadScreenOpen, loaded, setLandingOpen }) {
 	});
 	const { opacityAll } = useSpring({
 		opacityAll: fade ? 0 : 1,
-		config: { duration: 200 },
+		config: { duration: 800 },
 		onRest: () => (fade ? setLoadScreenOpen(false) : null),
 	});
 

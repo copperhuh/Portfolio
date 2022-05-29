@@ -123,7 +123,24 @@ export default function Skills({
 					: null,
 			}}
 		>
-			<div className="text"></div>
+			<div className="text">
+				<p>
+					I specialize in <span>front-end</span> development of
+					responsive, user-friendly websites, mainly using{" "}
+					<span>ReactJS</span>. I also have experience in UI and UX
+					design.
+				</p>
+				<p>
+					In love with working on ambitious projects that force me to
+					deepen my understanding of various technologies, as well as
+					bringing life to crazy and/or creative designs.
+				</p>
+				<p>
+					Currently, I'm looking forward to learning{" "}
+					<span>Next.js</span> and <span>Gatsby</span>. I also see
+					myself learning some back-end in the future.
+				</p>
+			</div>
 			{iconsSection}
 			<animated.div
 				className="obscure"
@@ -229,6 +246,15 @@ const SkillsStyled = styled.div`
 		.text {
 			height: 100%;
 			width: 53%;
+			padding: 2rem 1rem 2rem 3rem;
+			line-height: 1.6;
+			box-sizing: border-box;
+			p {
+				font-size: 1.08rem;
+				span {
+					color: ${(props) => props.colors.mainColor};
+				}
+			}
 		}
 		.icon-container {
 			height: 100%;
