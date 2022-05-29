@@ -226,7 +226,7 @@ const useTheme = () => {
 					// color={"#e34267"}
 					roughnessMap={roughnessMap2}
 					map={empty}
-					aoMap={empty}
+					// aoMap={empty}
 				/>
 			),
 		},
@@ -239,9 +239,11 @@ const useTheme = () => {
 			skullMaterial: true,
 			material: (
 				<meshStandardMaterial
-					color={"white"}
+					// color={null}
 					map={map6}
 					roughnessMap={roughnessMap6}
+					// lightMap={empty}
+					aoMap={empty}
 				/>
 			),
 		},
@@ -257,8 +259,8 @@ const useTheme = () => {
 					color={color}
 					// color={"#fba063"}
 					roughnessMap={roughnessMap2}
-					map={empty}
-					aoMap={empty}
+					// map={empty}
+					// aoMap={empty}
 				/>
 			),
 		},
@@ -292,9 +294,9 @@ const useTheme = () => {
 					// color={"#a64dbf"}
 					metalness={1}
 					roughness={0.5}
-					map={empty}
-					roughnessMap={empty}
-					metalnessMap={empty}
+					// map={empty}
+					// roughnessMap={empty}
+					// metalnessMap={empty}
 				/>
 			),
 		},
@@ -354,9 +356,9 @@ const useTheme = () => {
 					map={map8}
 					lightMap={lightMap8}
 					roughnessMap={roughnessMap8}
-					alphaMap={empty}
-					aoMap={empty}
-					metalnessMap={empty}
+					// alphaMap={empty}
+					// aoMap={empty}
+					// metalnessMap={empty}
 				/>
 			),
 		},

@@ -86,7 +86,7 @@ export default function Skills({
 
 	const icons = [
 		{ name: "JavaScript", class: "devicon-javascript-plain" },
-		{ name: "React", class: "devicon-react-original" },
+		{ name: "ReactJS", class: "devicon-react-original" },
 		{ name: "TypeScript", class: "devicon-typescript-plain" },
 		{ name: "Redux", class: "devicon-redux-original" },
 		{ name: "HTML5", class: "devicon-html5-plain" },
@@ -133,12 +133,12 @@ export default function Skills({
 				<p>
 					In love with working on ambitious projects that force me to
 					deepen my understanding of various technologies, as well as
-					bringing life to crazy and/or creative designs.
+					bringing life to creative and/or crazy designs.
 				</p>
 				<p>
 					Currently, I'm looking forward to learning{" "}
 					<span>Next.js</span> and <span>Gatsby</span>. I also see
-					myself learning some back-end in the future.
+					myself learning some <span>back-end</span> in the future.
 				</p>
 			</div>
 			{iconsSection}
@@ -253,6 +253,7 @@ const SkillsStyled = styled.div`
 				font-size: 1.08rem;
 				span {
 					color: ${(props) => props.colors.mainColor};
+					display: inline-block;
 				}
 			}
 		}

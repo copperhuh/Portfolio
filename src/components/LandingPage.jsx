@@ -38,10 +38,8 @@ export default function LandingPage({
 			if (reverseFlag) return;
 			if (zoomFlag) {
 				cameraControls.current.zoomTo(45, true);
-				console.log("eee1");
 			} else {
 				cameraControls.current.zoomTo(50, true);
-				console.log("eee2");
 			}
 			setZoomFlag(!zoomFlag);
 		}, 100);

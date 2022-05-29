@@ -51,9 +51,9 @@ function App() {
 
 		onRest: () => (fade ? setLandingOpen(false) : null),
 	});
-	useEffect(() => {
-		console.log(loadScreenOpen);
-	}, [loadScreenOpen]);
+	// useEffect(() => {
+	// 	console.log(loadScreenOpen);
+	// }, [loadScreenOpen]);
 	return (
 		<>
 			<GlobalStyles />
