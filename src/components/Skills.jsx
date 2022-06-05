@@ -125,15 +125,15 @@ export default function Skills({
 		>
 			<div className="text">
 				<p>
-					I specialize in <span>front-end</span> development of
+					My specialization is <span>front-end</span> development of
 					responsive, user-friendly websites, mainly using{" "}
 					<span>ReactJS</span>. I also have experience in UI and UX
 					design.
 				</p>
 				<p>
-					In love with working on ambitious projects that force me to
-					deepen my understanding of various technologies, as well as
-					bringing life to creative and/or crazy designs.
+					I enjoy bringing life to creative and/or crazy designs, as
+					well as working on ambitious projects that force me to
+					deepen my understanding of various technologies.
 				</p>
 				<p>
 					Currently, I'm looking forward to learning{" "}
@@ -250,7 +250,7 @@ const SkillsStyled = styled.div`
 			line-height: 1.6;
 			box-sizing: border-box;
 			p {
-				font-size: 1.08rem;
+				font-size: 1.078rem;
 				span {
 					color: ${(props) => props.colors.mainColor};
 					display: inline-block;

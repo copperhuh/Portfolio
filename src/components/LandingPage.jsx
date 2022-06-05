@@ -16,8 +16,8 @@ export default function LandingPage({
 	const [reverseFlag, setReverseFlag] = useState(false);
 
 	const fadeOut = (e) => {
-		if (!reverseFlag) {
-			setReverseFlag(true);
+		if (reverseFlag) {
+			// setReverseFlag(true);
 			setN(n - 1);
 		}
 		// e.stopPropagation();
@@ -70,13 +70,13 @@ export default function LandingPage({
 				// console.log("ddd");
 				setN(n - 1);
 			} else {
-				if (n === h2.length + 2 + h3.length) return;
+				if (n === h2.length + 2 + h3.length) setReverseFlag(true);
 				// if (n === h2.length + 2 + h3.length + 3) setReverseFlag(true);
 				// console.log("ccc");
 				setN(n + 1);
 			}
 		}, 50);
-	}, [n, reverseFlag]);
+	}, [n]);
 
 	const h2 = "Jakub Koper".split("");
 	const h3 = "Front End Developer".split("");

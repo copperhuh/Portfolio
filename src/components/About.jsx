@@ -5,6 +5,8 @@ import svgLetterData from "../svgLetterData";
 import Letter from "./Letter";
 import SvgWord from "./SvgWord";
 
+import headshot from "../headshot.jpg";
+
 export default function About({
 	contrastColor,
 	transition,
@@ -94,6 +96,24 @@ export default function About({
 					: null,
 			}}
 		>
+			<div className="text">
+				<p className="with-bg">
+					Hi, I'm Jakub, a <span>self-taught</span>{" "}
+					<span>front-end</span> developer based in Warsaw, Poland.
+				</p>
+				<p>
+					I've been coding for close to 3 years now, and about a year
+					ago decided on making <span>front-end</span> my{" "}
+					<span>full-time</span> focus. Since then, I've made many
+					personal projects, finished various online courses, and
+					finally created a portfolio that I'm satisfied with.
+				</p>
+				<p>
+					Right now, I feel confident in my current skills and looking
+					for opportunities to test them in a professional setting.
+				</p>
+			</div>
+			<div className="screenshot"></div>
 			<animated.div
 				className="obscure"
 				style={{
@@ -129,7 +149,7 @@ export default function About({
 	});
 
 	return (
-		<AboutStyled colors={colors[localIdx]}>
+		<AboutStyled headshot={headshot} colors={colors[localIdx]}>
 			<SvgWord
 				color={contrastColor}
 				side="right"
@@ -196,6 +216,61 @@ const AboutStyled = styled.div`
 		position: relative;
 		justify-content: space-between;
 		color: ${(props) => props.colors.contrastColor};
+		.text {
+			height: 100%;
+			width: 53%;
+			padding: 0.8rem 1rem 0rem 3rem;
+			line-height: 1.6;
+			box-sizing: border-box;
+			p {
+				font-size: 1.078rem;
+				span {
+					/* color: ${(props) => props.colors.mainColor}; */
+					display: inline-block;
+				}
+			}
+			.with-bg {
+				font-size: 1.2rem;
+				width: 80%;
+				color: ${(props) => props.colors.secondaryColor};
+				background: ${(props) => props.colors.contrastColor};
+				padding: 0.3rem 4rem 0.3rem 1rem;
+				margin-left: -1.4rem;
+			}
+		}
+		.screenshot {
+			order: 2;
+			/* grid-column: 1/14;
+		grid-row: 3/7; */
+			width: 45%;
+			background: ${(props) => `url(${props.headshot}) no-repeat`};
+			background-color: #151515;
+			/* background-color: ${(props) => props.colors.contrastColor}; */
+			background-size: cover;
+			background-position: 0% 25%;
+			/* background: #4b8c7170; */
+			/* img {
+			width: 100%;
+			height: 100%;
+			background-size: contain;
+		} */
+			position: relative;
+			::after {
+				position: absolute;
+				content: "";
+				width: 100%;
+				height: 100%;
+				background: ${(props) => props.colors.mainColor + "50"};
+				/* background: #4b8c7170; */
+				top: 0;
+				left: 0;
+				opacity: 1;
+				transition: all 0.4s;
+			}
+			/* :hover::after {
+				opacity: 0;
+			} */
+		}
 
 		::after {
 			position: absolute;

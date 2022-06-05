@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 
 import useTheme from "../themes";
 
@@ -75,10 +75,11 @@ function Scene({ idx0, idx1, idx2, updateIdx, setLoaded, moveSkull }) {
 			/>
 		);
 	}
-	const regress = useThree((state) => state.performance.regress);
-	useEffect(() => {
-		regress();
-	}, []);
+	// const regress = useThree((state) => state.performance.regress);
+
+	// useFrame(() => {
+	// 	regress();
+	// });
 	return (
 		// <Canvas
 		// 	className="canvas"

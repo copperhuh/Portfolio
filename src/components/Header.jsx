@@ -27,7 +27,7 @@ export default function Header({ contrastColor, section, transition }) {
 		<HeaderStyled color={currentColor}>
 			<animated.div style={{ opacity: opacityAll }} className="container">
 				<div className="left">
-					<span className="link" onClick={() => transition(true)}>
+					<span className="link" onClick={() => transition("HOME")}>
 						JAKUB KOPER
 					</span>
 				</div>
