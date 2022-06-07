@@ -70,10 +70,11 @@ export default function LandingPage({
 				// console.log("ddd");
 				setN(n - 1);
 			} else {
-				if (n === h2.length + 2 + h3.length) setReverseFlag(true);
-				// if (n === h2.length + 2 + h3.length + 3) setReverseFlag(true);
-				// console.log("ccc");
-				setN(n + 1);
+				if (n === h2.length + 2 + h3.length) {
+					setReverseFlag(true);
+				} else {
+					setN(n + 1);
+				}
 			}
 		}, 50);
 	}, [n]);

@@ -88,32 +88,33 @@ function App() {
 				>
 					<Main cameraControls={cameraControls} currentIdx={idx0} />
 				</animated.div>
-
-				<React.Suspense fallback={null}>
-					<Canvas
-						className="canvas"
-						shadows
-						camera={{
-							fov: 80,
-							near: 0.1,
-							far: 1000,
-							position: [2, 2, 6],
-						}}
-					>
-						<CameraControls ref={cameraControls} />
-						<React.Suspense fallback={null}>
-							<Scene
-								idx0={idx0}
-								idx1={idx1}
-								idx2={idx2}
-								updateIdx={updateIdx}
-								setLoaded={setLoaded}
-								moveSkull={moveSkull}
-							/>
-							<Preload all />
-						</React.Suspense>
-					</Canvas>
-				</React.Suspense>
+				<div className="canvas-container">
+					<React.Suspense fallback={null}>
+						<Canvas
+							className="canvas"
+							shadows
+							camera={{
+								fov: 80,
+								near: 0.1,
+								far: 1000,
+								position: [2, 2, 6],
+							}}
+						>
+							<CameraControls ref={cameraControls} />
+							<React.Suspense fallback={null}>
+								<Scene
+									idx0={idx0}
+									idx1={idx1}
+									idx2={idx2}
+									updateIdx={updateIdx}
+									setLoaded={setLoaded}
+									moveSkull={moveSkull}
+								/>
+								<Preload all />
+							</React.Suspense>
+						</Canvas>
+					</React.Suspense>
+				</div>
 			</AppStyled>
 		</>
 	);
@@ -133,10 +134,19 @@ const AppStyled = styled.div`
 	.over {
 		z-index: 5;
 	}
+	.canvas-container {
+		width: 100vw;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
 	.canvas {
 		width: 100vw;
 		height: 100vh;
-		position: relative;
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
 `;
 

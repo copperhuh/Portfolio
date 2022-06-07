@@ -429,7 +429,7 @@ const ContactStyled = styled.div`
 	display: grid;
 	grid-template: repeat(20, 1fr) / repeat(30, 1fr);
 
-	.title {
+	/* .title {
 		padding: 1rem;
 		grid-column: 5/20;
 		grid-row: 1/4;
@@ -450,6 +450,32 @@ const ContactStyled = styled.div`
 			height: 100%;
 			flex: 1;
 		}
+	} */
+	.title {
+		/* background: #000; */
+		padding: 1rem 0;
+		grid-column: 1/29;
+		grid-row: 1/4;
+		z-index: 3;
+		width: 90%;
+		height: 93%;
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		svg {
+			fill: none;
+			max-height: 100%;
+			max-width: 100%;
+		}
+		.letter-container {
+			width: 8.7rem;
+			height: 100%;
+		}
+		@media (max-width: 1200px) {
+			/* grid-column: 3/31; */
+			width: 100%;
+		}
 	}
 
 	.contact-container-back,
@@ -464,6 +490,18 @@ const ContactStyled = styled.div`
 		grid-row: 6/20;
 		transition: transform 0.4s;
 		position: relative;
+		@media (max-width: 1650px) {
+			grid-column: 7/21;
+		}
+		@media (max-width: 1550px) {
+			grid-column: 7/21;
+		}
+		@media (max-width: 1450px) {
+			grid-column: 5/22;
+		}
+		@media (max-width: 1200px) {
+			grid-column: 4/22;
+		}
 	}
 	.contact-container-main {
 		background: ${(props) => props.colors.secondaryColor};
@@ -486,6 +524,9 @@ const ContactStyled = styled.div`
 			font-size: 1.2rem;
 			box-sizing: border-box;
 			border-right: 0.6rem solid ${(props) => props.colors.mainColor};
+			@media (max-width: 1200px) {
+				font-size: 1.1rem;
+			}
 		}
 		.message-sent-screen,
 		.message-error-screen {
@@ -562,6 +603,8 @@ const ContactStyled = styled.div`
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+				margin-top: 1rem;
+				/* margin-bottom: 0.5rem; */
 				.name,
 				.email {
 					width: 48%;
@@ -621,6 +664,7 @@ const ContactStyled = styled.div`
 
 			.submit-btn {
 				justify-content: end;
+				margin-bottom: 0.5rem;
 				button {
 					font-family: "Montserrat", sans-serif;
 					background: ${(props) => props.colors.contrastColor};
@@ -715,6 +759,9 @@ const ContactStyled = styled.div`
 		width: 100%;
 		height: 100%;
 		position: relative;
+		@media (max-width: 1450px) {
+			display: none;
+		}
 	}
 
 	.left-section {

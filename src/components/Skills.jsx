@@ -125,7 +125,7 @@ export default function Skills({
 		>
 			<div className="text">
 				<p>
-					My specialization is <span>front-end</span> development of
+					I specialize in <span>front-end</span> development of
 					responsive, user-friendly websites, mainly using{" "}
 					<span>ReactJS</span>. I also have experience in UI and UX
 					design.
@@ -203,24 +203,30 @@ const SkillsStyled = styled.div`
 	grid-template: repeat(20, 1fr) / repeat(30, 1fr);
 
 	.title {
-		padding: 1rem;
-		grid-column: 9/21;
+		padding: 1rem 0;
+		grid-column: 7/31;
 		grid-row: 1/4;
 		z-index: 3;
 		width: 90%;
 		height: 93%;
 		position: absolute;
 		display: flex;
+		justify-content: center;
+		align-items: center;
 		svg {
 			fill: none;
 			max-height: 100%;
 			max-width: 100%;
 		}
 		.letter-container {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			width: 8.7rem;
 			height: 100%;
+		}
+		@media (max-width: 1450px) {
+			grid-row: 2/5;
+		}
+		@media (max-width: 1110px) {
+			grid-column: 5/31;
 		}
 	}
 
@@ -231,9 +237,38 @@ const SkillsStyled = styled.div`
 		width: 100%;
 		height: 100%;
 		grid-column: 12/27;
-		grid-row: 6/16;
+		grid-row: 6/17;
 		transition: transform 0.4s;
 		position: relative;
+		@media (max-width: 1700px) {
+			grid-column: 11/27;
+		}
+		@media (max-width: 1530px) {
+			grid-column: 10/27;
+		}
+		@media (max-width: 1450px) {
+			grid-row: 7/18;
+			grid-column: 10/28;
+		}
+		@media (max-width: 1365px) {
+			grid-column: 10/29;
+		}
+		@media (max-width: 1290px) {
+			grid-row: 7/18;
+			grid-column: 10/29;
+		}
+		@media (max-width: 1245px) {
+			grid-column: 10/30;
+		}
+
+		@media (max-width: 1110px) {
+			grid-row: 7/17;
+			grid-column: 7/30;
+		}
+		/* @media (max-width: 970px) {
+			grid-row: 7/17;
+			grid-column: 6/30;
+		} */
 	}
 	.projects-container-main {
 		background: ${(props) => props.colors.secondaryColor};
@@ -254,6 +289,9 @@ const SkillsStyled = styled.div`
 				span {
 					color: ${(props) => props.colors.mainColor};
 					display: inline-block;
+				}
+				@media (max-width: 1185px) {
+					font-size: 1rem;
 				}
 			}
 		}
@@ -322,10 +360,13 @@ const SkillsStyled = styled.div`
 	.left-section,
 	.bottom-section,
 	.right-section {
-		z-index: 1;
 		width: 100%;
 		height: 100%;
 		position: relative;
+		z-index: 4;
+		@media (max-width: 1450px) {
+			display: none;
+		}
 	}
 
 	.left-section {
@@ -345,7 +386,7 @@ const SkillsStyled = styled.div`
 	.right-svg-word,
 	.bottom-svg-word {
 		position: absolute;
-		height: 85%;
+		height: 70%;
 		top: 50%;
 		left: 1rem;
 		transform: translateY(-50%);
@@ -365,6 +406,7 @@ const SkillsStyled = styled.div`
 			justify-content: center;
 			align-items: center;
 			width: 100%;
+			margin: 1rem 0;
 			height: 20%;
 		}
 	}
@@ -374,17 +416,17 @@ const SkillsStyled = styled.div`
 	}
 
 	.bottom-svg-word {
-		height: 120px;
+		height: 70%;
 		top: auto;
 		left: 50%;
 		transform: translateX(-50%);
 		bottom: 2rem;
-		width: 55%;
+		width: 100%;
 		flex-direction: row;
-		justify-content: space-evenly;
+		justify-content: center;
 		align-items: center;
 		.letter-container {
-			width: calc(95% / 7);
+			width: 9.5%;
 			height: 100%;
 		}
 	}

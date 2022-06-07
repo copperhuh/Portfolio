@@ -40,6 +40,7 @@ const HomeStyled = styled.div`
 		width: 100%;
 		height: 100%;
 		position: relative;
+		/* background: #000; */
 	}
 
 	.left-section {
@@ -91,7 +92,7 @@ const HomeStyled = styled.div`
 		}
 	}
 
-	.bottom-svg-word {
+	/* .bottom-svg-word {
 		height: 160px;
 		left: 50%;
 		transform: translateX(-50%);
@@ -104,8 +105,40 @@ const HomeStyled = styled.div`
 			width: calc(95% / 6);
 			height: 100%;
 		}
+	} */
+	.bottom-svg-word {
+		/* height: 70%; */
+		height: 160px;
+		top: auto;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 2rem;
+		width: 100%;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		.letter-container {
+			width: 11%;
+			@media (max-width: 1650px) {
+				width: 12%;
+			}
+			@media (max-width: 1550px) {
+				width: 13%;
+			}
+			@media (max-width: 1450px) {
+				width: 14%;
+			}
+			@media (max-width: 1350px) {
+				width: 15%;
+			}
+			@media (max-width: 1250px) {
+				width: 16.5%;
+				height: 90%;
+			}
+			height: 100%;
+		}
+		/* background: #000; */
 	}
-
 	.arrow-container {
 		z-index: 1;
 		position: absolute;

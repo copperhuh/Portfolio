@@ -174,7 +174,7 @@ const AboutStyled = styled.div`
 	display: grid;
 	grid-template: repeat(20, 1fr) / repeat(30, 1fr);
 
-	.title {
+	/* .title {
 		padding: 1rem;
 		grid-column: 12/23;
 		grid-row: 1/4;
@@ -195,6 +195,39 @@ const AboutStyled = styled.div`
 			height: 100%;
 			flex: 1;
 		}
+	} */
+	.title {
+		padding: 1rem 0;
+		grid-column: 7/31;
+		grid-row: 1/4;
+		z-index: 3;
+		width: 90%;
+		height: 93%;
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		svg {
+			fill: none;
+			max-height: 100%;
+			max-width: 100%;
+		}
+		.letter-container {
+			width: 8.7rem;
+			margin: 0 0.6rem;
+			height: 100%;
+		}
+		@media (max-width: 1550px) {
+			grid-column: 6/31;
+			/* grid-row: 6/17; */
+		}
+		@media (max-width: 1450px) {
+			grid-row: 2/5;
+			grid-column: 7/31;
+		}
+		@media (max-width: 1230px) {
+			grid-column: 7/31;
+		}
 	}
 
 	.projects-container-back,
@@ -204,9 +237,21 @@ const AboutStyled = styled.div`
 		width: 100%;
 		height: 100%;
 		grid-column: 10/25;
-		grid-row: 6/16;
+		grid-row: 6/17;
 		transition: transform 0.4s;
 		position: relative;
+		@media (max-width: 1550px) {
+			grid-column: 8/25;
+			/* grid-row: 6/17; */
+		}
+		@media (max-width: 1450px) {
+			grid-column: 8/27;
+			grid-row: 7/18;
+		}
+		@media (max-width: 1230px) {
+			grid-column: 8/29;
+			grid-row: 7/19;
+		}
 	}
 	.projects-container-main {
 		background: ${(props) => props.colors.secondaryColor};
@@ -289,6 +334,10 @@ const AboutStyled = styled.div`
 		width: 100%;
 		height: 100%;
 		position: relative;
+		z-index: 4;
+		@media (max-width: 1450px) {
+			display: none;
+		}
 	}
 	.bottom-section {
 		grid-column: 1/31;
@@ -302,7 +351,7 @@ const AboutStyled = styled.div`
 	.right-svg-word,
 	.bottom-svg-word {
 		position: absolute;
-		height: 85%;
+		height: 70%;
 		top: 50%;
 		left: 1rem;
 		transform: translateY(-50%);
@@ -322,6 +371,7 @@ const AboutStyled = styled.div`
 			justify-content: center;
 			align-items: center;
 			width: 100%;
+			margin: 1rem 0;
 			height: 20%;
 		}
 	}
@@ -330,7 +380,7 @@ const AboutStyled = styled.div`
 		right: 1rem;
 	}
 
-	.bottom-svg-word {
+	/* .bottom-svg-word {
 		height: 120px;
 		top: auto;
 		left: 50%;
@@ -342,6 +392,22 @@ const AboutStyled = styled.div`
 		align-items: center;
 		.letter-container {
 			width: calc(95% / 7);
+			height: 100%;
+		}
+	} */
+
+	.bottom-svg-word {
+		height: 70%;
+		top: auto;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 2rem;
+		width: 100%;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		.letter-container {
+			width: 9.5%;
 			height: 100%;
 		}
 	}
