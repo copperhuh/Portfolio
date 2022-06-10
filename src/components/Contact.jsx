@@ -718,6 +718,12 @@ const ContactStyled = styled.div`
 		flex-direction: column;
 		color: ${(props) => props.colors.contrastColor};
 		padding: 1.5rem 2.5rem;
+		@media (max-width: 1650px) {
+			padding: 1.5rem 2rem;
+		}
+		@media (max-width: 1450px) {
+			padding: 1.5rem 1.5rem;
+		}
 		::after {
 			position: absolute;
 			content: "";
@@ -735,6 +741,7 @@ const ContactStyled = styled.div`
 			text-decoration: none;
 			font-size: 1.3rem;
 			transition: all 0.3s;
+			word-break: break-all;
 			div {
 				margin: 0 1rem;
 			}
@@ -748,6 +755,15 @@ const ContactStyled = styled.div`
 				.MuiSvgIcon-root {
 					transform: scale(1.1);
 				}
+			}
+			@media (max-width: 1650px) {
+				font-size: 1.2rem;
+			}
+			@media (max-width: 1450px) {
+				font-size: 1.1rem;
+			}
+			@media (max-width: 1250px) {
+				font-size: 1rem;
 			}
 		}
 	}

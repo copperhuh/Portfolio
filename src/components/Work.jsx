@@ -8,6 +8,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { animated, useSpring } from "@react-spring/web";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 import sortDemonSS from "../screenshots/ss-sort-demon.png";
 import pathDemonSS from "../screenshots/ss-path-demon.png";
@@ -20,6 +21,8 @@ export default function Work({
 	colors,
 	currentIdx,
 }) {
+	const windowWidth = useWindowWidth();
+
 	const [action, setAction] = useState(null);
 	useEffect(() => {
 		setTimeout(() => {
@@ -87,17 +90,20 @@ export default function Work({
 				key={i}
 				className="projects-container-back"
 				style={{
-					transform: containerBlur
-						? `translateX(${-6 + i * 1}%) translateY(${
-								12 - i * 3.5
-						  }%)`
-						: null,
+					transform:
+						containerBlur && windowWidth > 650
+							? `translateX(${-6 + i * 1}%) translateY(${
+									12 - i * 3.5
+							  }%)`
+							: null,
 				}}
 			></div>
 		);
 	});
+	const images = [sortDemonSS, pathDemonSS, warSS, portfolioSS];
 	const projectsData = [
 		{
+			idx: 0,
 			subtitle: "Featured Project",
 			title: "SORT DEMON",
 			description:
@@ -115,6 +121,7 @@ export default function Work({
 			github: "https://github.com/copperhuh/SortDemon",
 		},
 		{
+			idx: 1,
 			subtitle: "Featured Project",
 			title: "PATH DEMON",
 			description:
@@ -132,6 +139,7 @@ export default function Work({
 			github: "https://github.com/copperhuh/PathDemon",
 		},
 		{
+			idx: 2,
 			subtitle: "Featured Project",
 			title: "WAR",
 			description:
@@ -143,6 +151,7 @@ export default function Work({
 			github: "https://github.com/copperhuh/WAR",
 		},
 		{
+			idx: 3,
 			subtitle: "Featured Project",
 			title: "PORTFOLIO",
 			description:
@@ -213,11 +222,16 @@ export default function Work({
 	containerBg.push(
 		<div
 			key={7}
-			className="projects-container-main"
+			className={`projects-container-main ${
+				projectIdx % 2 === 1 ? "projects-container-main--uneven" : ""
+			} `}
 			style={{
-				transform: containerBlur
-					? `translateX(${-6 + 7 * 1}%) translateY(${12 - 7 * 3.5}%)`
-					: null,
+				transform:
+					containerBlur && windowWidth > 650
+						? `translateX(${-6 + 7 * 1}%) translateY(${
+								12 - 7 * 3.5
+						  }%)`
+						: null,
 			}}
 		>
 			{project}
@@ -274,6 +288,7 @@ export default function Work({
 			url={projectsData[projectIdx].img}
 			colors={colors[localIdx]}
 			projectIdx={projectIdx}
+			images={images}
 		>
 			<SvgWord
 				color={contrastColor}
@@ -289,12 +304,203 @@ export default function Work({
 			/>
 
 			<div className="title">{letters}</div>
-			{containerBg}
+			{windowWidth >= 1080 ? (
+				containerBg
+			) : (
+				<>
+					<ProjectCard
+						currentIdx={currentIdx}
+						projectData={projectsData[0]}
+						contrastColor={contrastColor}
+						transition={transition}
+						colors={colors}
+						windowWidth={windowWidth}
+					/>
+					<ProjectCard
+						currentIdx={currentIdx}
+						projectData={projectsData[1]}
+						contrastColor={contrastColor}
+						transition={transition}
+						colors={colors}
+						windowWidth={windowWidth}
+					/>
+					<ProjectCard
+						currentIdx={currentIdx}
+						projectData={projectsData[2]}
+						contrastColor={contrastColor}
+						transition={transition}
+						colors={colors}
+						windowWidth={windowWidth}
+					/>
+					<ProjectCard
+						currentIdx={currentIdx}
+						projectData={projectsData[3]}
+						contrastColor={contrastColor}
+						transition={transition}
+						colors={colors}
+						windowWidth={windowWidth}
+					/>
+				</>
+			)}
 			{/* <div className="title">WORK</div> */}
 			{/* <div className="screenshot"></div> */}
 		</WorkStyled>
 	);
 }
+
+const ProjectCard = ({
+	projectData,
+	currentIdx,
+	contrastColor,
+	transition,
+	colors,
+	windowWidth,
+}) => {
+	const [action, setAction] = useState(null);
+	useEffect(() => {
+		setTimeout(() => {
+			setContainerBlur(true);
+			setAction("waiting");
+		}, 1000);
+	}, []);
+
+	useEffect(() => {
+		if (action) {
+			setObscure(true);
+			setContainerBlur(false);
+			setAction("changeTheme");
+		}
+	}, [currentIdx]);
+
+	const [containerBlur, setContainerBlur] = useState(false);
+	const [obscured, setObscured] = useState(false);
+	const [obscure, setObscure] = useState(false);
+	const [obscureBorder, setObscureBorder] = useState(false);
+	const [obscureSide, setObscureSide] = useState(true);
+
+	const { obscureSize } = useSpring({
+		obscureSize: obscure ? "100%" : "0%",
+		config: { duration: 200 },
+		onRest: () => {
+			if (obscure) {
+				setObscureBorder(true);
+			} else {
+				setObscureSide(true);
+				setAction("waiting");
+			}
+		},
+	});
+
+	const { obscureBorderSize } = useSpring({
+		obscureBorderSize: obscureBorder ? "0%" : "100%",
+		config: { duration: 200 },
+		onRest: () => {
+			if (obscureBorder) setObscured(true);
+			if (!obscureBorder) setObscure(false);
+		},
+	});
+
+	const [localIdx, setLocalIdx] = useState(currentIdx);
+	useEffect(() => {
+		if (obscured) {
+			if (action === "changeTheme") {
+				setLocalIdx(currentIdx);
+			}
+			setObscureBorder(false);
+			setObscureSide(false);
+			setObscured(false);
+			setContainerBlur(true);
+		}
+	}, [obscured]);
+
+	const containerBg = new Array(7).fill(null).map((_, i) => {
+		return (
+			<div
+				key={i}
+				className={`projects-container-back ${
+					"projects-container-back--" + projectData.idx
+				}`}
+				style={{
+					transform:
+						containerBlur && windowWidth > 650
+							? `translateX(${-6 + i * 1}%) translateY(${
+									12 - i * 3.5
+							  }%)`
+							: null,
+				}}
+			></div>
+		);
+	});
+
+	const project = (
+		<>
+			<a
+				href={projectData.live}
+				target="_blank"
+				className="screenshot"
+			></a>
+			<div className="flex">
+				<h5 className="project-subtitle">{projectData.subtitle}</h5>
+				<h2 className="project-title">{projectData.title}</h2>
+				<p className="description">{projectData.description}</p>
+				<div className="techs">
+					{projectData.techs.map((tech, idx) => (
+						<div key={idx} className="tech">
+							{tech}
+						</div>
+					))}
+				</div>
+				<div className="links">
+					<a href={projectData.live} target="_blank">
+						<LaunchIcon />
+					</a>
+					<a href={projectData.github} target="_blank">
+						<GitHubIcon />
+					</a>
+				</div>
+			</div>
+		</>
+	);
+	containerBg.push(
+		<div
+			key={7}
+			className={`projects-container-main ${
+				projectData.idx % 2 === 1
+					? "projects-container-main--uneven"
+					: ""
+			} ${"projects-container-main--" + projectData.idx}`}
+			style={{
+				transform:
+					containerBlur && windowWidth > 650
+						? `translateX(${-6 + 7 * 1}%) translateY(${
+								12 - 7 * 3.5
+						  }%)`
+						: null,
+			}}
+		>
+			{project}
+			<animated.div
+				className="obscure"
+				style={{
+					width: obscureSize,
+					height: obscureSize,
+					borderTopLeftRadius: obscureSide ? 0 : obscureBorderSize,
+					borderBottomRightRadius: obscureSide
+						? obscureBorderSize
+						: 0,
+					position: "absolute",
+					background: colors[currentIdx].mainColor,
+					top: obscureSide ? 0 : "auto",
+					bottom: obscureSide ? "auto" : 0,
+					left: obscureSide ? 0 : "auto",
+					right: obscureSide ? "auto" : 0,
+					zIndex: 10,
+				}}
+			></animated.div>
+		</div>
+	);
+	return containerBg;
+};
 
 const WorkStyled = styled.div`
 	position: relative;
@@ -311,28 +517,6 @@ const WorkStyled = styled.div`
 		position: relative;
 	}
 
-	/* .title {
-		padding: 2rem;
-		grid-column: 9/21;
-		grid-row: 1/4;
-		z-index: 3;
-		color: #212523;
-		width: 80%;
-		height: 93%;
-		position: absolute;
-		display: flex;
-		svg {
-			fill: none;
-			max-height: 100%;
-			max-width: 100%;
-		}
-		.letter-container {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100%;
-		}
-	} */
 	.title {
 		padding: 1rem 0;
 		grid-column: 3/26;
@@ -348,6 +532,7 @@ const WorkStyled = styled.div`
 			fill: none;
 			max-height: 100%;
 			max-width: 100%;
+			overflow: visible;
 		}
 		.letter-container {
 			width: 11.8rem;
@@ -359,16 +544,23 @@ const WorkStyled = styled.div`
 		@media (max-width: 1150px) {
 			grid-column: 3/27;
 		}
+		@media (max-width: 1079px) {
+			/* background: #000; */
+			/* width: 100%; */
+			height: 100%;
+			grid-column: 1/31;
+			grid-row: 1/3;
+			left: 50%;
+			transform: translateX(-50%);
+			.letter-container {
+				width: auto;
+				margin: 0 0.2rem;
+			}
+		}
+		@media (max-width: 400px) {
+			grid-row: 1/2;
+		}
 	}
-	/* .screenshot {
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		width: 29rem;
-		height: 18rem;
-		background: #212523;
-		transform: translateY(25%) translateX(35%);
-	} */
 
 	.projects-container-back,
 	.projects-container-main {
@@ -416,11 +608,14 @@ const WorkStyled = styled.div`
 		box-sizing: border-box;
 		position: relative;
 		justify-content: space-between;
-		padding: ${(props) =>
-			props.projectIdx % 2 === 1 ? "0 0 0 1.4rem" : "0 1.4rem 0 0"};
+		/* padding: ${(props) =>
+			props.projectIdx % 2 === 1 ? "0 0 0 1.4rem" : "0 1.4rem 0 0"}; */
+		padding: 0 0 0 1.4rem;
+
 		color: ${(props) => props.colors.contrastColor};
-		text-align: ${(props) =>
-			props.projectIdx % 2 === 1 ? "left" : "right"};
+		/* text-align: ${(props) =>
+			props.projectIdx % 2 === 1 ? "left" : "right"}; */
+		text-align: left;
 		/* color: #d2d1c9; */
 		/* .obscure {
 			position: absolute;
@@ -493,13 +688,16 @@ const WorkStyled = styled.div`
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			align-items: ${(props) =>
-				props.projectIdx % 2 === 1 ? "start" : "end"};
+			/* align-items: ${(props) =>
+				props.projectIdx % 2 === 1 ? "start" : "end"}; */
+			align-items: start;
 			width: 25%;
 			padding: 1rem 0;
 			box-sizing: border-box;
-			order: ${(props) => (props.projectIdx % 2 === 1 ? -1 : 3)};
+			/* order: ${(props) => (props.projectIdx % 2 === 1 ? -1 : 3)}; */
+			order: -1;
 		}
+
 		.project-subtitle {
 			font-size: 0.75rem;
 			margin: 0.7rem 0 0;
@@ -526,8 +724,9 @@ const WorkStyled = styled.div`
 			display: flex;
 			flex-wrap: wrap;
 			font-size: 0.75rem;
-			justify-content: ${(props) =>
-				props.projectIdx % 2 === 1 ? "start" : "end"};
+			/* justify-content: ${(props) =>
+				props.projectIdx % 2 === 1 ? "start" : "end"}; */
+			justify-content: start;
 			.tech {
 				margin: 0.2rem 0.5rem;
 			}
@@ -545,8 +744,12 @@ const WorkStyled = styled.div`
 			width: 22rem;
 			z-index: 1;
 			padding: 1rem;
-			text-align: ${(props) =>
-				props.projectIdx % 2 === 1 ? "left" : "right"};
+
+			text-align: left;
+			@media (max-width: 500px) {
+				width: 100%;
+				box-sizing: border-box;
+			}
 		}
 		.screenshot {
 			order: 2;
@@ -603,6 +806,119 @@ const WorkStyled = styled.div`
 			width: 100%;
 			height: 0.35rem;
 			background: ${(props) => props.colors.mainColor};
+		}
+		@media (max-width: 850px) {
+			.flex {
+				width: 100%;
+				z-index: 2;
+			}
+			.screenshot {
+				display: none;
+			}
+			::before {
+				content: "";
+				/* background: ${(props) => `url(${props.url}) no-repeat`}; */
+				/* background-size: cover; */
+				position: absolute;
+				top: 0px;
+				right: 0px;
+				bottom: 0px;
+				left: 0px;
+				opacity: 0.2;
+			}
+		}
+	}
+	.projects-container-main--uneven {
+		padding: 0 1.4rem 0 0;
+		text-align: right;
+		.flex {
+			align-items: end;
+			order: 3;
+		}
+		.techs {
+			justify-content: end;
+		}
+		.description {
+			text-align: right;
+		}
+	}
+
+	.projects-container-main--0,
+	.projects-container-back--0,
+	.projects-container-main--1,
+	.projects-container-back--1,
+	.projects-container-main--2,
+	.projects-container-back--2,
+	.projects-container-main--3,
+	.projects-container-back--3 {
+		grid-column: 3/28;
+		@media (max-width: 500px) {
+			box-sizing: border-box;
+			padding: 0 0.8rem;
+		}
+		@media (max-width: 650px) {
+			grid-column: 2/29;
+		}
+	}
+
+	.projects-container-main--0,
+	.projects-container-back--0 {
+		grid-row: 4/7;
+		@media (max-width: 400px) {
+			grid-row: 3/6;
+		}
+	}
+	.projects-container-main--0 {
+		@media (max-width: 850px) {
+			::before {
+				background: ${(props) => `url(${props.images[0]}) no-repeat`};
+				background-size: cover;
+			}
+		}
+	}
+	.projects-container-main--1,
+	.projects-container-back--1 {
+		grid-row: 8/11;
+		@media (max-width: 400px) {
+			grid-row: 7/10;
+		}
+	}
+	.projects-container-main--1 {
+		@media (max-width: 850px) {
+			::before {
+				background: ${(props) => `url(${props.images[1]}) no-repeat`};
+				background-size: cover;
+			}
+		}
+	}
+	.projects-container-main--2,
+	.projects-container-back--2 {
+		grid-row: 12/15;
+		@media (max-width: 400px) {
+			grid-row: 11/14;
+		}
+	}
+	.projects-container-main--2 {
+		@media (max-width: 850px) {
+			::before {
+				background: ${(props) => `url(${props.images[2]}) no-repeat`};
+				background-size: cover;
+			}
+		}
+	}
+	.projects-container-main--3,
+	.projects-container-back--3 {
+		grid-row: 16/19;
+		@media (max-width: 400px) {
+			grid-row: 15/18;
+		}
+	}
+	.projects-container-main--3 {
+		@media (max-width: 850px) {
+			::before {
+				background: ${(props) => `url(${props.images[3]}) no-repeat`};
+				background-size: cover;
+			}
 		}
 	}
 
@@ -744,7 +1060,6 @@ const WorkStyled = styled.div`
 		justify-content: center;
 		padding: 0.8rem;
 		margin: 0.6rem;
-		/* color: #d4d0c1; */
 		font-family: "BIZ UDPMincho", serif;
 		font-size: 1.2rem;
 		letter-spacing: 0.1rem;

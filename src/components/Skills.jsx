@@ -4,6 +4,7 @@ import styled from "styled-components";
 import svgLetterData from "../svgLetterData";
 import Letter from "./Letter";
 import SvgWord from "./SvgWord";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 export default function Skills({
 	contrastColor,
@@ -11,6 +12,8 @@ export default function Skills({
 	colors,
 	currentIdx,
 }) {
+	const windowWidth = useWindowWidth();
+
 	const [action, setAction] = useState(null);
 	useEffect(() => {
 		setTimeout(() => {
@@ -74,11 +77,12 @@ export default function Skills({
 				key={i}
 				className="projects-container-back"
 				style={{
-					transform: containerBlur
-						? `translateX(${-i * 1.2}%) translateY(${
-								12 - i * 2.5
-						  }%)`
-						: null,
+					transform:
+						containerBlur && windowWidth > 650
+							? `translateX(${-i * 1.2}%) translateY(${
+									12 - i * 2.5
+							  }%)`
+							: null,
 				}}
 			></div>
 		);
@@ -118,9 +122,12 @@ export default function Skills({
 			key={7}
 			className="projects-container-main"
 			style={{
-				transform: containerBlur
-					? `translateX(${-7 * 1.2}%) translateY(${12 - 7 * 2.5}%)`
-					: null,
+				transform:
+					containerBlur && windowWidth > 650
+						? `translateX(${-7 * 1.2}%) translateY(${
+								12 - 7 * 2.5
+						  }%)`
+						: null,
 			}}
 		>
 			<div className="text">
@@ -228,6 +235,32 @@ const SkillsStyled = styled.div`
 		@media (max-width: 1110px) {
 			grid-column: 5/31;
 		}
+		@media (max-width: 1079px) {
+			width: 100%;
+			grid-column: 1/31;
+			grid-row: 2/4;
+		}
+		@media (max-width: 850px) {
+			padding: 0;
+			height: 80%;
+		}
+		@media (max-width: 750px) {
+			height: 60%;
+		}
+		@media (max-width: 600px) {
+			height: 100%;
+			grid-row: 2/3;
+		}
+		@media (max-width: 500px) {
+			height: 90%;
+			margin-top: -2rem;
+		}
+		@media (max-width: 400px) {
+			height: 70%;
+		}
+		@media (max-width: 350px) {
+			height: 60%;
+		}
 	}
 
 	.projects-container-back,
@@ -265,10 +298,29 @@ const SkillsStyled = styled.div`
 			grid-row: 7/17;
 			grid-column: 7/30;
 		}
-		/* @media (max-width: 970px) {
-			grid-row: 7/17;
-			grid-column: 6/30;
-		} */
+		@media (max-width: 1079px) {
+			grid-row: 6/19;
+			grid-column: 9/27;
+		}
+		@media (max-width: 950px) {
+			grid-row: 6/19;
+			grid-column: 8/28;
+		}
+		@media (max-width: 800px) {
+			grid-row: 6/19;
+			grid-column: 7/29;
+		}
+		@media (max-width: 750px) {
+			grid-row: 5/19;
+		}
+		@media (max-width: 650px) {
+			grid-row: 4/20;
+			grid-column: 3/28;
+		}
+		@media (max-width: 500px) {
+			grid-row: 3/20;
+			grid-column: 2/29;
+		}
 	}
 	.projects-container-main {
 		background: ${(props) => props.colors.secondaryColor};
@@ -344,6 +396,19 @@ const SkillsStyled = styled.div`
 					font-weight: 600;
 					font-size: 0.8rem;
 				}
+				@media (max-width: 400px) {
+					width: 33.3%;
+					height: 21%;
+				}
+				@media (max-width: 300px) {
+					i {
+						font-size: 2rem;
+						padding: 0.7rem;
+					}
+					.icon-name {
+						font-size: 0.7rem;
+					}
+				}
 			}
 		}
 		::after {
@@ -354,6 +419,47 @@ const SkillsStyled = styled.div`
 			width: 100%;
 			height: 0.35rem;
 			background: ${(props) => props.colors.mainColor};
+		}
+		@media (max-width: 1079px) {
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 1rem 1rem 2.5rem 1rem;
+			.text {
+				padding: 2rem 1rem 2rem 1.5rem;
+			}
+			.text,
+			.icon-container {
+				width: 100%;
+				padding-bottom: 3rem;
+				.icon {
+					padding: 0.5rem 0;
+				}
+				.subtitle {
+					.subtitle-text {
+						padding: 0.2rem 0.5rem 0.2rem 10rem;
+					}
+					padding-bottom: 2rem;
+				}
+			}
+		}
+		@media (max-width: 450px) {
+			padding: 1rem 0.2rem 2.5rem 0.2rem;
+		}
+		@media (max-width: 550px) {
+			.icon-container .subtitle .subtitle-text {
+				padding: 0.2rem 0.5rem 0.2rem 6rem;
+			}
+		}
+		@media (max-width: 400px) {
+			.icon-container .subtitle {
+				/* justify-content: center; */
+
+				.subtitle-text {
+					padding: 0.2rem 0.5rem 0.2rem 2rem;
+					margin-right: -0.9rem;
+				}
+			}
 		}
 	}
 

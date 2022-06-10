@@ -6,6 +6,7 @@ import Letter from "./Letter";
 import SvgWord from "./SvgWord";
 
 import headshot from "../headshot.jpg";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 export default function About({
 	contrastColor,
@@ -13,6 +14,8 @@ export default function About({
 	colors,
 	currentIdx,
 }) {
+	const windowWidth = useWindowWidth();
+
 	const [action, setAction] = useState(null);
 	useEffect(() => {
 		setTimeout(() => {
@@ -76,11 +79,12 @@ export default function About({
 				key={i}
 				className="projects-container-back"
 				style={{
-					transform: containerBlur
-						? `translateX(${-6 + i * 1}%) translateY(${
-								12 - i * 2
-						  }%)`
-						: null,
+					transform:
+						containerBlur && windowWidth > 650
+							? `translateX(${-6 + i * 1}%) translateY(${
+									12 - i * 2
+							  }%)`
+							: null,
 				}}
 			></div>
 		);
@@ -91,9 +95,12 @@ export default function About({
 			key={7}
 			className="projects-container-main"
 			style={{
-				transform: containerBlur
-					? `translateX(${-6 + 7 * 1}%) translateY(${12 - 7 * 2}%)`
-					: null,
+				transform:
+					containerBlur && windowWidth > 650
+						? `translateX(${-6 + 7 * 1}%) translateY(${
+								12 - 7 * 2
+						  }%)`
+						: null,
 			}}
 		>
 			<div className="text">
@@ -102,7 +109,7 @@ export default function About({
 					<span>front-end</span> developer based in Warsaw, Poland.
 				</p>
 				<p>
-					I've been coding for close to 3 years now, and about a year
+					I've been coding for close to 4 years now, and about a year
 					ago decided on making <span>front-end</span> my{" "}
 					<span>full-time</span> focus. Since then, I've made many
 					personal projects, finished various online courses, and
@@ -113,7 +120,7 @@ export default function About({
 					for opportunities to test them in a professional setting.
 				</p>
 			</div>
-			<div className="screenshot"></div>
+			<div className="headshot"></div>
 			<animated.div
 				className="obscure"
 				style={{
@@ -228,6 +235,33 @@ const AboutStyled = styled.div`
 		@media (max-width: 1230px) {
 			grid-column: 7/31;
 		}
+		@media (max-width: 1100px) {
+			grid-column: 6/31;
+		}
+		@media (max-width: 1050px) {
+			grid-column: 1/31;
+			width: 100%;
+		}
+		@media (max-width: 850px) {
+			grid-row: 2/4;
+			height: 80%;
+		}
+		@media (max-width: 760px) {
+			grid-row: 2/4;
+			height: 65%;
+		}
+		@media (max-width: 560px) {
+			grid-row: 2/3;
+			height: 100%;
+		}
+		@media (max-width: 430px) {
+			grid-row: 2/3;
+			height: 80%;
+		}
+		@media (max-width: 350px) {
+			grid-row: 2/3;
+			height: 70%;
+		}
 	}
 
 	.projects-container-back,
@@ -252,11 +286,33 @@ const AboutStyled = styled.div`
 			grid-column: 8/29;
 			grid-row: 7/19;
 		}
+		@media (max-width: 1050px) {
+			grid-column: 3/29;
+			grid-row: 7/19;
+		}
+		@media (max-width: 850px) {
+			grid-column: 6/26;
+			grid-row: 6/19;
+		}
+		@media (max-width: 750px) {
+			grid-column: 5/27;
+		}
+		@media (max-width: 650px) {
+			grid-column: 3/28;
+			grid-row: 5/20;
+		}
+		@media (max-width: 500px) {
+			grid-column: 2/29;
+		}
+		@media (max-width: 430px) {
+			grid-row: 4/20;
+		}
 	}
 	.projects-container-main {
 		background: ${(props) => props.colors.secondaryColor};
 		display: flex;
 		font-family: "Montserrat", sans-serif;
+		height: fit-content;
 		box-sizing: border-box;
 		position: relative;
 		justify-content: space-between;
@@ -281,24 +337,33 @@ const AboutStyled = styled.div`
 				background: ${(props) => props.colors.contrastColor};
 				padding: 0.3rem 4rem 0.3rem 1rem;
 				margin-left: -1.4rem;
+				@media (max-width: 500px) {
+					font-size: 1.1rem;
+					margin-left: -0.4rem;
+					padding-right: 2rem;
+				}
+				@media (max-width: 400px) {
+					font-size: 1.04rem;
+					box-sizing: border-box;
+					margin-left: 0;
+					padding: 0.3rem 1rem;
+					width: 100%;
+				}
 			}
 		}
-		.screenshot {
+		@media (max-width: 400px) {
+			.text p {
+				font-size: 1rem;
+			}
+		}
+		.headshot {
 			order: 2;
-			/* grid-column: 1/14;
-		grid-row: 3/7; */
 			width: 45%;
 			background: ${(props) => `url(${props.headshot}) no-repeat`};
 			background-color: #151515;
-			/* background-color: ${(props) => props.colors.contrastColor}; */
 			background-size: cover;
 			background-position: 0% 25%;
-			/* background: #4b8c7170; */
-			/* img {
-			width: 100%;
-			height: 100%;
-			background-size: contain;
-		} */
+
 			position: relative;
 			::after {
 				position: absolute;
@@ -315,6 +380,33 @@ const AboutStyled = styled.div`
 			/* :hover::after {
 				opacity: 0;
 			} */
+		}
+		@media (max-width: 850px) {
+			flex-direction: column;
+			align-items: center;
+			.text {
+				height: 50%;
+				width: 100%;
+				padding: 0.8rem 3rem 1.5rem 3rem;
+			}
+			.headshot {
+				height: 30rem;
+				width: 100%;
+			}
+			/* padding-bottom: 5rem; */
+		}
+		@media (max-width: 500px) {
+			.text {
+				padding: 0.8rem 1.5rem 1.5rem 1.5rem;
+			}
+			.headshot {
+				height: 25rem;
+			}
+		}
+		@media (max-width: 350px) {
+			.headshot {
+				height: 20rem;
+			}
 		}
 
 		::after {
