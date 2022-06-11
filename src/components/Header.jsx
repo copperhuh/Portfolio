@@ -18,7 +18,9 @@ export default function Header({
 	const [currentColor, setCurrentColor] = useState(contrastColor);
 
 	useEffect(() => {
-		setToggleOpacityAll(true);
+		if (windowWidth < 1080 || contrastColor !== currentColor) {
+			setToggleOpacityAll(true);
+		}
 	}, [contrastColor, bgColor, secondaryColor]);
 
 	const { opacityAll } = useSpring({
