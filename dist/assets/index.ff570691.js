@@ -3755,6 +3755,13 @@ No matching component was found for:
 				color: ${t=>t.colors.mainColor};
 				margin: 0;
 				/* margin-top: -2rem; */
+				@media (max-width: 730px) {
+					font-size: 4rem;
+					text-align: center;
+				}
+				@media (max-width: 570px) {
+					font-size: 3rem;
+				}
 			}
 			h4 {
 				font-size: 1.2rem;
@@ -3762,6 +3769,7 @@ No matching component was found for:
 				line-height: 1.7;
 				span {
 					position: relative;
+					display: block;
 					::after {
 						content: "";
 						position: absolute;
@@ -3773,6 +3781,12 @@ No matching component was found for:
 						transform: translateX(-50%);
 					}
 				}
+				@media (max-width: 350px) {
+					font-size: 1rem;
+				}
+			}
+			@media (max-width: 570px) {
+				margin: 0 1rem;
 			}
 			.message-error-screen {
 				h4 {
