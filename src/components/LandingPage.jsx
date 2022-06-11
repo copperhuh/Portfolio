@@ -125,5 +125,11 @@ const LandingStyled = styled.div`
 	}
 	h3 {
 		font-size: 1.7rem;
+		@media (max-width: 370px) {
+			font-size: 1.5rem;
+		}
+		@media (max-width: 330px) {
+			font-size: 1.3rem;
+		}
 	}
 `;
