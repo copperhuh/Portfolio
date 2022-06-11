@@ -9,6 +9,7 @@ import axios from "axios";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 export default function Contact({
 	prevSection,
@@ -17,6 +18,7 @@ export default function Contact({
 	colors,
 	currentIdx,
 }) {
+	const windowWidth = useWindowWidth();
 	const [action, setAction] = useState(null);
 	useEffect(() => {
 		setTimeout(() => {
@@ -84,9 +86,12 @@ export default function Contact({
 				key={i}
 				className="contact-container-back"
 				style={{
-					transform: containerBlur
-						? `translateX(${-i * 1.2}%) translateY(${7 - i * 1.5}%)`
-						: null,
+					transform:
+						containerBlur && windowWidth > 650
+							? `translateX(${-i * 1.2}%) translateY(${
+									7 - i * 1.5
+							  }%)`
+							: null,
 				}}
 			></div>
 		);
@@ -98,9 +103,12 @@ export default function Contact({
 				key={i}
 				className="contact-side-back"
 				style={{
-					transform: containerBlur
-						? `translateX(${-i * 1.2}%) translateY(${7 - i * 1.5}%)`
-						: null,
+					transform:
+						containerBlur && windowWidth > 650
+							? `translateX(${-i * 1.2}%) translateY(${
+									7 - i * 1.5
+							  }%)`
+							: null,
 				}}
 			></div>
 		);
@@ -225,9 +233,10 @@ export default function Contact({
 			key={7}
 			className="contact-container-main"
 			style={{
-				transform: containerBlur
-					? `translateX(${-7 * 1.2}%) translateY(${7 - 7 * 1.5}%)`
-					: null,
+				transform:
+					containerBlur && windowWidth > 650
+						? `translateX(${-7 * 1.2}%) translateY(${7 - 7 * 1.5}%)`
+						: null,
 			}}
 		>
 			{send === "sent" ? (
@@ -353,9 +362,10 @@ export default function Contact({
 			key={7}
 			className="contact-side-main"
 			style={{
-				transform: containerBlur
-					? `translateX(${-7 * 1.2}%) translateY(${7 - 7 * 1.5}%)`
-					: null,
+				transform:
+					containerBlur && windowWidth > 650
+						? `translateX(${-7 * 1.2}%) translateY(${7 - 7 * 1.5}%)`
+						: null,
 			}}
 		>
 			<a
@@ -467,14 +477,24 @@ const ContactStyled = styled.div`
 			fill: none;
 			max-height: 100%;
 			max-width: 100%;
+			overflow: visible;
 		}
 		.letter-container {
 			width: 8.7rem;
 			height: 100%;
 		}
 		@media (max-width: 1200px) {
-			/* grid-column: 3/31; */
 			width: 100%;
+		}
+		@media (max-width: 1079px) {
+			.letter-container {
+				width: auto;
+				margin: 0 0.2rem;
+			}
+			grid-column: 1/30;
+			box-sizing: border-box;
+			padding: 0 1rem;
+			height: 100%;
 		}
 	}
 
@@ -502,6 +522,26 @@ const ContactStyled = styled.div`
 		@media (max-width: 1200px) {
 			grid-column: 4/22;
 		}
+		@media (max-width: 1079px) {
+			grid-column: 7/28;
+			grid-row: 6/17;
+		}
+		@media (max-width: 950px) {
+			grid-column: 6/29;
+		}
+		@media (max-width: 830px) {
+			grid-column: 5/30;
+		}
+		@media (max-width: 730px) {
+			grid-row: 5/15;
+		}
+		@media (max-width: 650px) {
+			grid-column: 2/29;
+			grid-row: 4/15;
+		}
+		@media (max-width: 375px) {
+			grid-row: 4/15;
+		}
 	}
 	.contact-container-main {
 		background: ${(props) => props.colors.secondaryColor};
@@ -526,6 +566,19 @@ const ContactStyled = styled.div`
 			border-right: 0.6rem solid ${(props) => props.colors.mainColor};
 			@media (max-width: 1200px) {
 				font-size: 1.1rem;
+			}
+			@media (max-width: 800px) {
+				width: 95%;
+				padding-right: 6rem;
+			}
+			@media (max-width: 600px) {
+				width: 95%;
+				padding: 0.5rem 1rem;
+			}
+			@media (max-width: 500px) {
+				width: 100%;
+				font-size: 1rem;
+				margin: 0;
 			}
 		}
 		.message-sent-screen,
@@ -688,7 +741,35 @@ const ContactStyled = styled.div`
 							transform: none;
 						}
 					}
+					@media (max-width: 500px) {
+						margin-right: 0;
+					}
+					@media (max-width: 450px) {
+						width: 60%;
+					}
 				}
+			}
+			@media (max-width: 700px) {
+				.personal-info {
+					flex-direction: column;
+					.name,
+					.email {
+						width: 100%;
+					}
+					.name {
+						margin-bottom: 1rem;
+					}
+				}
+			}
+			@media (max-width: 650px) {
+				.personal-info {
+					.name {
+						margin-bottom: 1.5rem;
+					}
+				}
+			}
+			@media (max-width: 500px) {
+				padding: 1rem 1.5rem 0.7rem;
 			}
 		}
 		::after {
@@ -706,6 +787,32 @@ const ContactStyled = styled.div`
 	.contact-side-main {
 		grid-column: 23/30;
 		grid-row: 12/17;
+		@media (max-width: 1079px) {
+			grid-row: 18/20;
+			grid-column: 7/28;
+		}
+		@media (max-width: 950px) {
+			grid-column: 6/29;
+		}
+		@media (max-width: 830px) {
+			grid-column: 5/30;
+		}
+		@media (max-width: 730px) {
+			grid-row: 17/20;
+			grid-column: 9/26;
+		}
+		@media (max-width: 650px) {
+			grid-column: 6/25;
+		}
+		@media (max-width: 540px) {
+			grid-column: 4/27;
+		}
+		@media (max-width: 440px) {
+			grid-column: 2/29;
+		}
+		@media (max-width: 375px) {
+			grid-row: 16/20;
+		}
 	}
 	.contact-side-main {
 		background: ${(props) => props.colors.secondaryColor};
@@ -764,6 +871,29 @@ const ContactStyled = styled.div`
 			}
 			@media (max-width: 1250px) {
 				font-size: 1rem;
+			}
+		}
+		@media (max-width: 1079px) {
+			flex-direction: row;
+			align-items: center;
+			a {
+				width: fit-content;
+				margin: 0.5rem 0;
+				div {
+					padding: 0.4rem 0;
+				}
+			}
+		}
+		@media (max-width: 730px) {
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: start;
+		}
+		@media (max-width: 375px) {
+			align-items: center;
+			padding: 0.7rem 0.2rem;
+			a {
+				flex-direction: column;
 			}
 		}
 	}

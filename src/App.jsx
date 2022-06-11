@@ -9,6 +9,7 @@ import Loading, { LoadingScreen } from "./components/Loading";
 import LandingPage from "./components/LandingPage";
 import { animated, useSpring } from "@react-spring/web";
 import { AdaptiveDpr, AdaptiveEvents, Preload } from "@react-three/drei";
+import { colors } from "./themes";
 
 const GlobalStyles = createGlobalStyle`
 	body,html{
@@ -16,6 +17,22 @@ const GlobalStyles = createGlobalStyle`
 		height: 100vh;
 		padding: 0;
 		margin: 0;
+		&::-webkit-scrollbar {
+			width: 10px;
+		}
+		&::-webkit-scrollbar-track {
+			background: ${(props) => props.colors.secondaryColor};
+			transition: all .2s;
+		}
+		&::-webkit-scrollbar-thumb {
+			width: 7px;
+			transition: all .2s;
+			background: ${(props) => props.colors.mainColor};
+			border-radius: 5px;
+		}
+	}
+	html{
+		overflow-x: hidden;
 	}
 `;
 
@@ -55,9 +72,10 @@ function App() {
 	// useEffect(() => {
 	// 	console.log(loadScreenOpen);
 	// }, [loadScreenOpen]);
+
 	return (
 		<>
-			<GlobalStyles />
+			<GlobalStyles colors={colors[idx0]} />
 			<AppStyled>
 				{/* {true && <LoadingScreen />} */}
 				{loadScreenOpen && (
@@ -122,8 +140,9 @@ function App() {
 
 const AppStyled = styled.div`
 	width: 100vw;
-	height: 100vh;
+	height: 100%;
 	position: relative;
+
 	.fade-in-container {
 		position: absolute;
 		top: 0;

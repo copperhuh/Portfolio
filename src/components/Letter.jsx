@@ -1,5 +1,6 @@
 import { animated, useSpring } from "@react-spring/web";
 import React, { useEffect, useState } from "react";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 export default function Letter({
 	stroke,
@@ -11,6 +12,7 @@ export default function Letter({
 	viewBox,
 	button = true,
 }) {
+	const windowWidth = useWindowWidth();
 	const [localStroke, setLocalStroke] = useState(stroke);
 	useEffect(() => {
 		if (button && toggle) setLocalStroke(stroke);
@@ -23,6 +25,18 @@ export default function Letter({
 		onRest: () => setLocalStroke(stroke),
 	});
 
+	let strokeWidth = 1.7;
+	if (windowWidth < 350) {
+		strokeWidth = 5.5;
+	} else if (windowWidth < 400) {
+		strokeWidth = 4.7;
+	} else if (windowWidth < 500) {
+		strokeWidth = 4;
+	} else if (windowWidth < 600) {
+		strokeWidth = 3.2;
+	} else if (windowWidth < 700) {
+		strokeWidth = 2.5;
+	}
 	return (
 		<>
 			<svg width={width} height={height} viewBox={viewBox}>
@@ -35,7 +49,7 @@ export default function Letter({
 							}
 						}}
 						stroke={localStroke}
-						strokeWidth="1.7"
+						strokeWidth={strokeWidth}
 						d={path}
 					/>
 				</g>

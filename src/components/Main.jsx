@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../themes";
 import About from "./About";
@@ -13,11 +13,7 @@ export default function Main({ cameraControls, currentIdx }) {
 	const [open, setOpen] = useState(false);
 	const [section, setSection] = useState("HOME");
 	const [prevSection, setPrevSection] = useState("HOME");
-	// useEffect(() => {
-	// 	setInterval(() => {
-	// 		console.log(JSON.parse(cameraControls.current.toJSON()));
-	// 	}, 2000);
-	// }, []);
+
 	const transition = (sectionName) => {
 		if (sectionName === section) return;
 		setOpen(sectionName);
@@ -97,6 +93,8 @@ export default function Main({ cameraControls, currentIdx }) {
 				contrastColor={colors[currentIdx].contrastColor}
 				section={section}
 				transition={transition}
+				bgColor={colors[currentIdx].mainColor}
+				secondaryColor={colors[currentIdx].secondaryColor}
 			/>
 			<div className="content">
 				{section === "SKILLS" ? (
@@ -151,6 +149,7 @@ const MainStyled = styled.div`
 	max-height: 100vh;
 	width: 100vw;
 	max-width: 100vw;
+
 	/* overflow: hidden; */
 	* > {
 		box-sizing: border-box;
@@ -161,6 +160,10 @@ const MainStyled = styled.div`
 	display: flex;
 	flex-direction: column;
 	.content {
+		margin-top: 4.75rem;
 		flex: 1;
+		@media (max-width: 700px) {
+			margin-top: 7.5rem;
+		}
 	}
 `;

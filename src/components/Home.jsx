@@ -40,7 +40,6 @@ const HomeStyled = styled.div`
 		width: 100%;
 		height: 100%;
 		position: relative;
-		/* background: #000; */
 	}
 
 	.left-section {
@@ -82,6 +81,11 @@ const HomeStyled = styled.div`
 			height: calc(85% / 5);
 		}
 	}
+	.left-svg-word {
+		@media (max-width: 1250px) {
+			width: 200px;
+		}
+	}
 	.right-svg-word {
 		width: 350px;
 		left: auto;
@@ -89,6 +93,9 @@ const HomeStyled = styled.div`
 		.letter-container {
 			width: 100%;
 			height: 20%;
+		}
+		@media (max-width: 1250px) {
+			width: 250px;
 		}
 	}
 
@@ -139,6 +146,15 @@ const HomeStyled = styled.div`
 		}
 		/* background: #000; */
 	}
+
+	.left-section,
+	.bottom-section,
+	.right-section {
+		@media (max-width: 1000px) {
+			display: none;
+		}
+	}
+
 	.arrow-container {
 		z-index: 1;
 		position: absolute;

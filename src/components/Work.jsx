@@ -869,6 +869,12 @@ const WorkStyled = styled.div`
 		}
 	}
 	.projects-container-main--0 {
+		.screenshot {
+			background: ${(props) => `url(${props.images[0]}) no-repeat`};
+			background-color: #151515;
+			background-size: contain;
+			background-position: center;
+		}
 		@media (max-width: 850px) {
 			::before {
 				background: ${(props) => `url(${props.images[0]}) no-repeat`};
@@ -884,6 +890,12 @@ const WorkStyled = styled.div`
 		}
 	}
 	.projects-container-main--1 {
+		.screenshot {
+			background: ${(props) => `url(${props.images[1]}) no-repeat`};
+			background-color: #151515;
+			background-size: contain;
+			background-position: center;
+		}
 		@media (max-width: 850px) {
 			::before {
 				background: ${(props) => `url(${props.images[1]}) no-repeat`};
@@ -899,6 +911,12 @@ const WorkStyled = styled.div`
 		}
 	}
 	.projects-container-main--2 {
+		.screenshot {
+			background: ${(props) => `url(${props.images[2]}) no-repeat`};
+			background-color: #151515;
+			background-size: contain;
+			background-position: center;
+		}
 		@media (max-width: 850px) {
 			::before {
 				background: ${(props) => `url(${props.images[2]}) no-repeat`};
@@ -914,6 +932,12 @@ const WorkStyled = styled.div`
 		}
 	}
 	.projects-container-main--3 {
+		.screenshot {
+			background: ${(props) => `url(${props.images[3]}) no-repeat`};
+			background-color: #151515;
+			background-size: contain;
+			background-position: center;
+		}
 		@media (max-width: 850px) {
 			::before {
 				background: ${(props) => `url(${props.images[3]}) no-repeat`};

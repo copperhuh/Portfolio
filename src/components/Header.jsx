@@ -3,8 +3,17 @@ import styled from "styled-components";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { animated, useSpring } from "@react-spring/web";
+import useWindowWidth from "../hooks/useWindowWidth";
 
-export default function Header({ contrastColor, section, transition }) {
+export default function Header({
+	contrastColor,
+	section,
+	transition,
+	bgColor,
+	secondaryColor,
+}) {
+	const windowWidth = useWindowWidth();
+
 	const [toggleOpacityAll, setToggleOpacityAll] = useState(false);
 	const [currentColor, setCurrentColor] = useState(contrastColor);
 
@@ -22,9 +31,13 @@ export default function Header({ contrastColor, section, transition }) {
 			}
 		},
 	});
-
 	return (
-		<HeaderStyled color={currentColor}>
+		<HeaderStyled
+			color={currentColor}
+			bgColor={bgColor}
+			secondaryColor={secondaryColor}
+			width={windowWidth}
+		>
 			<animated.div style={{ opacity: opacityAll }} className="container">
 				<div className="left">
 					<span className="link" onClick={() => transition("HOME")}>
@@ -62,7 +75,7 @@ export default function Header({ contrastColor, section, transition }) {
 							SKILLS
 						</span>
 					</div>
-					<div>
+					<div className="break">
 						<span
 							className={`link ${
 								section === "CONTACT" ? "active" : null
@@ -86,20 +99,34 @@ export default function Header({ contrastColor, section, transition }) {
 const HeaderStyled = styled.div`
 	width: 100vw;
 	font-family: "BIZ UDPMincho", serif;
-	padding: 1rem 2rem;
 	font-size: 0.75rem;
-	/* color: rgb(40, 43, 42);
-	color: #d4d0c1;
-	color: #212523; */
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
 	color: ${(props) => props.color};
 	letter-spacing: 0.1rem;
 	box-sizing: border-box;
 	.container {
+		padding: 1rem 2rem;
+		box-sizing: border-box;
+		background: ${(props) =>
+			props.width < 1080
+				? `linear-gradient(120deg,${props.secondaryColor + "a0"},${
+						props.bgColor + "a0"
+				  })`
+				: "none"};
+		height: 100%;
+		width: 100%;
 		position: relative;
 		z-index: 2;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		@media (max-width: 440px) {
+			padding: 1rem;
+		}
 	}
 	.right {
 		> * {
@@ -120,10 +147,48 @@ const HeaderStyled = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		@media (max-width: 700px) {
+			flex-wrap: wrap-reverse;
+			justify-content: end;
+			width: 70%;
+			.break {
+				margin-left: 15rem;
+			}
+		}
+		@media (max-width: 660px) {
+			.break {
+				margin-left: 13rem;
+			}
+		}
+		@media (max-width: 610px) {
+			.break {
+				margin-left: 11rem;
+			}
+		}
+		@media (max-width: 565px) {
+			.break {
+				margin-left: 7rem;
+			}
+		}
+		@media (max-width: 480px) {
+			.break {
+				margin-left: 3rem;
+			}
+		}
+		@media (max-width: 410px) {
+			width: auto;
+			.break {
+				margin-left: 1rem;
+			}
+		}
 	}
 	.left {
 		z-index: 1;
 		user-select: none;
+		@media (max-width: 410px) {
+			text-align: center;
+			line-height: 1.6;
+		}
 	}
 	.link {
 		position: relative;

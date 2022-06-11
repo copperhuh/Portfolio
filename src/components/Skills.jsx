@@ -224,6 +224,7 @@ const SkillsStyled = styled.div`
 			fill: none;
 			max-height: 100%;
 			max-width: 100%;
+			overflow: visible;
 		}
 		.letter-container {
 			width: 8.7rem;
@@ -242,12 +243,40 @@ const SkillsStyled = styled.div`
 		}
 		@media (max-width: 850px) {
 			padding: 0;
-			height: 80%;
+			height: 100%;
+			grid-column: 1/31;
+			/* grid-row: 1/3; */
+			left: 50%;
+			transform: translateX(-50%);
+			.letter-container {
+				width: auto;
+				margin: 0 0.2rem;
+			}
 		}
 		@media (max-width: 750px) {
-			height: 60%;
+			height: 80%;
+		}
+		@media (max-width: 650px) {
+			height: 50%;
+			grid-row: 2/5;
 		}
 		@media (max-width: 600px) {
+			height: 40%;
+			/* grid-row: 1/4; */
+		}
+		@media (max-width: 440px) {
+			height: 30%;
+			/* grid-row: 1/4; */
+		}
+
+		@media (max-width: 400px) {
+			height: 40%;
+			grid-row: 2/4;
+		}
+		@media (max-width: 360px) {
+			height: 30%;
+		}
+		/* @media (max-width: 600px) {
 			height: 100%;
 			grid-row: 2/3;
 		}
@@ -260,7 +289,7 @@ const SkillsStyled = styled.div`
 		}
 		@media (max-width: 350px) {
 			height: 60%;
-		}
+		} */
 	}
 
 	.projects-container-back,
@@ -310,15 +339,15 @@ const SkillsStyled = styled.div`
 			grid-row: 6/19;
 			grid-column: 7/29;
 		}
-		@media (max-width: 750px) {
-			grid-row: 5/19;
-		}
+		/* @media (max-width: 750px) {
+			grid-row: 4/19;
+		} */
 		@media (max-width: 650px) {
-			grid-row: 4/20;
+			/* grid-row: 4/20; */
 			grid-column: 3/28;
 		}
 		@media (max-width: 500px) {
-			grid-row: 3/20;
+			grid-row: 5/20;
 			grid-column: 2/29;
 		}
 	}
