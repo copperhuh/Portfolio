@@ -19,7 +19,7 @@ export default function Header({
 
 	useEffect(() => {
 		setToggleOpacityAll(true);
-	}, [contrastColor]);
+	}, [contrastColor, bgColor, secondaryColor]);
 
 	const { opacityAll } = useSpring({
 		opacityAll: toggleOpacityAll ? 0 : 1,
