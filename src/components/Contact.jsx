@@ -594,6 +594,13 @@ const ContactStyled = styled.div`
 				color: ${(props) => props.colors.mainColor};
 				margin: 0;
 				/* margin-top: -2rem; */
+				@media (max-width: 730px) {
+					font-size: 4rem;
+					text-align: center;
+				}
+				@media (max-width: 570px) {
+					font-size: 3rem;
+				}
 			}
 			h4 {
 				font-size: 1.2rem;
@@ -601,6 +608,7 @@ const ContactStyled = styled.div`
 				line-height: 1.7;
 				span {
 					position: relative;
+					display: block;
 					::after {
 						content: "";
 						position: absolute;
@@ -612,6 +620,12 @@ const ContactStyled = styled.div`
 						transform: translateX(-50%);
 					}
 				}
+				@media (max-width: 350px) {
+					font-size: 1rem;
+				}
+			}
+			@media (max-width: 570px) {
+				margin: 0 1rem;
 			}
 			.message-error-screen {
 				h4 {
