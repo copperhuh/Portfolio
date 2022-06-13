@@ -9,7 +9,6 @@ export const getColorFromRange = (
 	let vals1 = ["", "", ""];
 	let vals2 = ["", "", ""];
 
-	// console.log(color1, color2, idx, n);
 	for (let i = 0; i < color1.length - 1; i++) {
 		vals1[~~(i / 2)] += color1[i + 1];
 		vals2[~~(i / 2)] += color2[i + 1];
@@ -17,11 +16,9 @@ export const getColorFromRange = (
 	vals1 = vals1.map((hex) => parseInt(hex, 16));
 	vals2 = vals2.map((hex) => parseInt(hex, 16));
 
-	// console.log(vals1, vals2);
 	const colors = new Array(n);
 	const colorsN = n % 2 === 0 ? n / 2 + 1 : (n + 1) / 2;
 	const diff = vals1.map((_, i) => vals1[i] - vals2[i]);
-	// console.log(diff);
 
 	for (let i = 0; i < n; i++) {
 		if (i < colorsN) {
@@ -38,11 +35,10 @@ export const getColorFromRange = (
 			colors[i] = colors[colorsN - (i + 2 - colorsN)];
 		}
 	}
-	// console.log(colors);
+
 	const arr = new Array(leng)
 		.fill(null)
 		.map((_, i) => colors[i % colors.length]);
-	// console.log(arr);
 
 	return type === "all"
 		? arr

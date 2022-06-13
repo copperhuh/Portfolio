@@ -1,10 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useSpring, animated } from "@react-spring/three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { useTexture } from "@react-three/drei";
-import { useFrame, useLoader } from "@react-three/fiber";
-import * as THREE from "three";
-import { getColorFromRange } from "../utils";
+import { useLoader } from "@react-three/fiber";
 
 const Skull = ({
 	themes,
@@ -68,19 +65,6 @@ const Skull = ({
 		config: { mass: 1, tension: 160, friction: 20, damping: true },
 	});
 
-	// const [themeIdx, setThemeIdx] = useState(0);
-	// const [nextThemeIdx, setNextThemeIdx] = useState(1);
-
-	// const updateThemeIdx = () => {
-	// 	if (nextThemeIdx === themes.length - 1) {
-	// 		setThemeIdx(nextThemeIdx);
-	// 		setNextThemeIdx(0);
-	// 	} else {
-	// 		setThemeIdx(nextThemeIdx);
-	// 		setNextThemeIdx(nextThemeIdx + 1);
-	// 	}
-	// };
-
 	const handleClick = (e) => {
 		if (transitionOngoing || !moveSkull) return;
 		e.stopPropagation();
@@ -90,11 +74,7 @@ const Skull = ({
 			setActive(false);
 			setMainColor(false);
 			setTimeout(() => {
-				//
-				// updateThemeIdx();
 				updateIdx();
-				//
-
 				setMainColor(true);
 				setTimeout(() => {
 					setTransitionOngoing(false);
@@ -102,57 +82,6 @@ const Skull = ({
 			}, 150);
 		}, 300);
 	};
-	//
-	// const [currentColor, setCurrentColor] = useState({
-	// 	main: [],
-	// 	sub: [],
-	// });
-	// useEffect(() => {
-	// 	const main = getColorFromRange(
-	// 		themes[idx0].color,
-	// 		themes[idx0].colorEnd,
-	// 		0,
-	// 		1000,
-	// 		1000,
-	// 		"avrage"
-	// 	);
-	// 	const sub = getColorFromRange(
-	// 		themes[idx1].color,
-	// 		themes[idx1].colorEnd,
-	// 		0,
-	// 		1000,
-	// 		1000,
-	// 		"avrage"
-	// 	);
-	// 	setCurrentColor({
-	// 		main,
-	// 		sub,
-	// 	});
-	// }, [idx0]);
-	// const [colorCounter, setColorCounter] = useState(0);
-	// useFrame(() => {
-	// 	// console.log(
-	// 	// 	"aaaaaaaa",
-	// 	// 	colorCounter,
-	// 	// 	getColorFromRange(
-	// 	// 		"#3c98e8",
-	// 	// 		"#0969bd",
-	// 	// 		colorCounter,
-	// 	// 		Math.ceil(100 / 2),
-	// 	// 		Math.ceil(100 / 2)
-	// 	// 	)
-	// 	// );
-	// 	if (colorCounter >= 1000) {
-	// 		setColorCounter(0);
-	// 	} else {
-	// 		setColorCounter((prev) => prev + 1);
-	// 	}
-	// });
-	//
-	// const material = useMemo(
-	// 	mainColor ? themes[idx0].material : themes[idx1].material,
-	// 	[mainColor, idx0, idx1]
-	// );
 
 	const { nodes } = useLoader(GLTFLoader, "./skull/scene.gltf");
 	const skull = [];
@@ -160,7 +89,6 @@ const Skull = ({
 		skull.push(
 			<animated.mesh
 				key={i}
-				// castShadow
 				renderOrder={999}
 				geometry={nodes[`Object_${i}`].geometry}
 				position-x={0.5}
@@ -170,30 +98,16 @@ const Skull = ({
 				rotation-y={y}
 				rotation-z={z}
 				scale={scale}
-				///
-				// material={material}
 			>
-				{/* {mainColor ? currentMaterial : nextMaterial} */}
-				{/* {mainColor
-					? themes[idx0].skullMaterial
-						? themes[idx0].material
-						: themes[idx0].material(currentColor.main)
-					: themes[idx1].skullMaterial
-					? themes[idx1].material
-					: themes[idx1].material(currentColor.sub)} */}
 				{mainColor ? themes[idx0].material : themes[idx1].material}
-				{/* {material} */}
 			</animated.mesh>
 		);
 	}
-	// console.log(themeIdx, nextThemeIdx);
-	// console.log(skull[0]);
 	const skullTransition = [];
 	for (let i = 2; i <= 7; i++) {
 		skullTransition.push(
 			<animated.mesh
 				key={i}
-				// castShadow
 				renderOrder={999}
 				geometry={nodes[`Object_${i}`].geometry}
 				position-x={0.5}
@@ -204,11 +118,7 @@ const Skull = ({
 				rotation-z={z}
 				scale={scaleTransition}
 			>
-				{/* {nextMaterial} */}
 				{themes[idx1].material}
-				{/* {themes[idx1].skullMaterial
-					? themes[idx1].material
-					: themes[idx1].material(currentColor.sub)} */}
 			</animated.mesh>
 		);
 	}

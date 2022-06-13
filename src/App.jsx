@@ -5,10 +5,10 @@ import Scene from "./components/Scene";
 import Main from "./components/Main";
 import { CameraControls } from "./camera-controls";
 import styled, { createGlobalStyle } from "styled-components";
-import Loading, { LoadingScreen } from "./components/Loading";
+import { LoadingScreen } from "./components/Loading";
 import LandingPage from "./components/LandingPage";
 import { animated, useSpring } from "@react-spring/web";
-import { AdaptiveDpr, AdaptiveEvents, Preload } from "@react-three/drei";
+import { Preload } from "@react-three/drei";
 import { colors } from "./themes";
 
 const GlobalStyles = createGlobalStyle`
@@ -17,7 +17,11 @@ const GlobalStyles = createGlobalStyle`
 		height: 100vh;
 		padding: 0;
 		margin: 0;
+		scrollbar-width: none;
 		&::-webkit-scrollbar {
+			display: none;
+		}
+		/* &::-webkit-scrollbar {
 			width: 10px;
 		}
 		&::-webkit-scrollbar-track {
@@ -29,7 +33,7 @@ const GlobalStyles = createGlobalStyle`
 			transition: all .2s;
 			background: ${(props) => props.colors.mainColor};
 			border-radius: 5px;
-		}
+		} */
 	}
 	html{
 		overflow-x: hidden;
@@ -69,15 +73,11 @@ function App() {
 
 		onRest: () => (fade ? setLandingOpen(false) : null),
 	});
-	// useEffect(() => {
-	// 	console.log(loadScreenOpen);
-	// }, [loadScreenOpen]);
 
 	return (
 		<>
 			<GlobalStyles colors={colors[idx0]} />
 			<AppStyled>
-				{/* {true && <LoadingScreen />} */}
 				{loadScreenOpen && (
 					<LoadingScreen
 						setLoadScreenOpen={setLoadScreenOpen}

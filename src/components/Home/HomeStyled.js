@@ -1,31 +1,4 @@
-import React from "react";
 import styled from "styled-components";
-import SvgWord from "./SvgWord";
-
-export default function Home({ contrastColor, transition }) {
-	return (
-		<HomeStyled>
-			<SvgWord
-				color={contrastColor}
-				side="bottom"
-				name="SKILLS"
-				transition={transition}
-			/>
-			<SvgWord
-				color={contrastColor}
-				side="left"
-				name="ABOUT"
-				transition={transition}
-			/>
-			<SvgWord
-				color={contrastColor}
-				side="right"
-				name="WORK"
-				transition={transition}
-			/>
-		</HomeStyled>
-	);
-}
 
 const HomeStyled = styled.div`
 	position: relative;
@@ -66,7 +39,6 @@ const HomeStyled = styled.div`
 		display: flex;
 		flex-direction: column;
 		justify-content: space-evenly;
-		/* background: #fff; */
 		svg {
 			fill: none;
 			max-height: 100%;
@@ -98,23 +70,7 @@ const HomeStyled = styled.div`
 			width: 250px;
 		}
 	}
-
-	/* .bottom-svg-word {
-		height: 160px;
-		left: 50%;
-		transform: translateX(-50%);
-		bottom: 2rem;
-		width: 60%;
-		flex-direction: row;
-		justify-content: space-evenly;
-		align-items: center;
-		.letter-container {
-			width: calc(95% / 6);
-			height: 100%;
-		}
-	} */
 	.bottom-svg-word {
-		/* height: 70%; */
 		height: 160px;
 		top: auto;
 		left: 50%;
@@ -144,7 +100,6 @@ const HomeStyled = styled.div`
 			}
 			height: 100%;
 		}
-		/* background: #000; */
 	}
 
 	.left-section,
@@ -166,9 +121,6 @@ const HomeStyled = styled.div`
 		width: 100px;
 		height: 100px;
 		svg {
-			/* fill: #d4d0c1;
-			fill: #212523;
-			fill: ${(props) => props.color}; */
 			max-height: 100%;
 			max-width: 100%;
 		}
@@ -205,11 +157,10 @@ const HomeStyled = styled.div`
 		justify-content: center;
 		padding: 0.8rem;
 		margin: 0.6rem;
-		/* color: #d4d0c1;
-		color: #212523;
-		color: ${(props) => props.color}; */
 		font-family: "BIZ UDPMincho", serif;
 		font-size: 1.2rem;
 		letter-spacing: 0.1rem;
 	}
 `;
+
+export default HomeStyled;

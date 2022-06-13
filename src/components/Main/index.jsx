@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { colors } from "../themes";
-import About from "./About";
-import Contact from "./Contact";
-import Header from "./Header";
-import Home from "./Home";
-import Skills from "./Skills";
-import TransitionScreen from "./TransitionScreen";
-import Work from "./Work";
+import React, { useState } from "react";
+import { colors } from "../../themes";
+import About from "../About";
+import Contact from "../Contact";
+import Header from "../Header";
+import Home from "../Home";
+import MainStyled from "./MainStyled";
+import Skills from "../Skills";
+import TransitionScreen from "../TransitionScreen";
+import Work from "../Work";
 
 export default function Main({ cameraControls, currentIdx }) {
 	const [open, setOpen] = useState(false);
@@ -42,15 +42,6 @@ export default function Main({ cameraControls, currentIdx }) {
 					false
 				);
 			} else if (sectionName === "SKILLS") {
-				// cameraControls.current.setLookAt(
-				// 	3.362,
-				// 	0,
-				// 	9.018,
-				// 	7.45,
-				// 	1,
-				// 	0.158,
-				// 	false
-				// );
 				cameraControls.current.setLookAt(
 					9.171,
 					1.411,
@@ -82,8 +73,6 @@ export default function Main({ cameraControls, currentIdx }) {
 				);
 			} else {
 				cameraControls.current.setLookAt(2, 2, 6, 0, 0, 0, false);
-				// cameraControls.current.setLookAt(2, 3, 6, 0, 1, 0, false);
-				// cameraControls.current.zoomTo(100);
 			}
 		}, 200);
 	};
@@ -143,27 +132,3 @@ export default function Main({ cameraControls, currentIdx }) {
 		</MainStyled>
 	);
 }
-
-const MainStyled = styled.div`
-	height: 100vh;
-	max-height: 100vh;
-	width: 100vw;
-	max-width: 100vw;
-
-	/* overflow: hidden; */
-	* > {
-		box-sizing: border-box;
-	}
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: flex;
-	flex-direction: column;
-	.content {
-		margin-top: 4.75rem;
-		flex: 1;
-		@media (max-width: 700px) {
-			margin-top: 7.5rem;
-		}
-	}
-`;

@@ -1,43 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-
+import React, { Suspense, useState } from "react";
 import useTheme from "../themes";
-
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import * as THREE from "three";
 import CirclesAnim from "./CircleAnim";
 import Skull from "./Skull";
 import Loading from "./Loading";
 import { AdaptiveDpr, AdaptiveEvents } from "@react-three/drei";
-
-const CameraController = () => {
-	const { camera, gl } = useThree();
-	useEffect(() => {
-		const controls = new OrbitControls(camera, gl.domElement);
-
-		controls.minDistance = 3;
-		controls.maxDistance = 20;
-		return () => {
-			controls.dispose();
-		};
-	}, [camera, gl]);
-	return null;
-};
-
-function Box({ position, rotation, args }) {
-	const mesh = useRef();
-
-	return (
-		<mesh position={position} ref={mesh} rotation={rotation}>
-			<boxBufferGeometry attach="geometry" args={args} />
-			<meshLambertMaterial
-				attach="material"
-				color="#5e8f7b"
-				factor={0.6}
-			/>
-		</mesh>
-	);
-}
 
 function Scene({ idx0, idx1, idx2, updateIdx, setLoaded, moveSkull }) {
 	const [transitionOngoing, setTransitionOngoing] = useState(false);
@@ -53,7 +19,6 @@ function Scene({ idx0, idx1, idx2, updateIdx, setLoaded, moveSkull }) {
 		initials.push((WIDTH / N) * i - 1 / N, (WIDTH / N) * i);
 	}
 	let animation = [];
-	// const circleGeometry = new THREE.CircleBufferGeometry(5, 150);
 	const circleGeometry = <circleBufferGeometry args={[5, 150]} />;
 	for (let i = 1; i <= N; i++) {
 		animation.push(
@@ -75,44 +40,14 @@ function Scene({ idx0, idx1, idx2, updateIdx, setLoaded, moveSkull }) {
 			/>
 		);
 	}
-	// const regress = useThree((state) => state.performance.regress);
 
-	// useFrame(() => {
-	// 	regress();
-	// });
 	return (
-		// <Canvas
-		// 	className="canvas"
-		// 	shadows
-		// 	camera={{ fov: 80, near: 0.1, far: 1000, position: [2, 2, 6] }}
-		// >
 		<>
-			{/* <CameraController /> */}
-			{/* <primitive object={new THREE.AxesHelper(10)} /> */}
-			{/* <primitive object={new THREE.GridHelper(100, 200)} /> */}
 			<ambientLight intensity={0.3} />
-
 			<pointLight position={[15, 19, 27]} intensity={0.4} />
 			<pointLight position={[-10, 0, -20]} intensity={0.5} />
 			<pointLight position={[0, -10, 0]} intensity={0.4} />
-			{/* <group>
-				<Box
-					position={[3.5, 3, 3.49]}
-					rotation={[0, -Math.PI / 4, 0]}
-					args={[10, 6, 0]}
-				/>
-				<Box
-					position={[-3.5, 3, 3.49]}
-					rotation={[0, Math.PI / 4, 0]}
-					args={[10, 6, 0]}
-				/>
-				<Box
-					position={[0, 0, 7]}
-					rotation={[0, Math.PI / 4, 0]}
-					args={[10, 0, 10]}
-				/>
-			</group> */}
-			<React.Suspense fallback={<Loading setLoaded={setLoaded} />}>
+			<Suspense fallback={<Loading setLoaded={setLoaded} />}>
 				<group>{animation}</group>
 				<Skull
 					themes={themes}
@@ -129,8 +64,7 @@ function Scene({ idx0, idx1, idx2, updateIdx, setLoaded, moveSkull }) {
 				/>
 				<AdaptiveDpr pixelated />
 				<AdaptiveEvents />
-			</React.Suspense>
-			{/* </Canvas> */}
+			</Suspense>
 		</>
 	);
 }

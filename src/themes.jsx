@@ -20,7 +20,6 @@ import React from "react";
 
 export const colors = [
 	{
-		// mainColor: "#4B8B70",
 		mainColor: "#68ab8e",
 		secondaryColor: "#212523",
 		contrastColor: "#D2D1C9",
@@ -88,36 +87,6 @@ export const colors = [
 	},
 ];
 const useTheme = () => {
-	// const map0 = useTexture(`./media/textures/marble.jpg`);
-	// const lightMap0 = useTexture(`./media/textures/marble_displacement.jpg`);
-	// const roughnessMap0 = useTexture(`./media/textures/marble_roughness.jpg`);
-
-	// const roughnessMap2 = useTexture(`./media/textures/gold_roughness.png`);
-
-	// const map3 = useTexture(`./media/textures/Tiles4.jpg`);
-	// const roughnessMap3 = useTexture(`./media/textures/Tiles4_roughness.jpg`);
-
-	// const map5 = useTexture(`./media/textures/Tiles.jpg`);
-	// const roughnessMap5 = useTexture(`./media/textures/Tiles_roughness.jpg`);
-
-	// const map6 = useTexture(`./media/textures/Tiles2.jpg`);
-	// const roughnessMap6 = useTexture(`./media/textures/Tiles2_roughness.jpg`);
-
-	// const map7 = useTexture(`./media/textures/MetalPlates.jpg`);
-
-	// const roughnessMap7 = useTexture(
-	// 	`./media/textures/MetalPlates_roughness.jpg`
-	// );
-	// const metalnessMap7 = useTexture(
-	// 	`./media/textures/MetalPlates_metalness.jpg`
-	// );
-
-	// const map8 = useTexture(`./media/textures/Ice.jpg`);
-	// const lightMap8 = useTexture(`./media/textures/Ice_displacement.jpg`);
-	// const roughnessMap8 = useTexture(`./media/textures/Ice_roughness.jpg`);
-
-	// const empty = useTexture(`./media/textures/empty.png`);
-
 	const [
 		map0,
 		lightMap0,
@@ -155,43 +124,6 @@ const useTheme = () => {
 		roughnessMap8Url,
 		emptyUrl,
 	]);
-	// const [
-	// 	map0,
-	// 	lightMap0,
-	// 	roughnessMap0,
-	// 	roughnessMap2,
-	// 	map3,
-	// 	roughnessMap3,
-	// 	map5,
-	// 	roughnessMap5,
-	// 	map6,
-	// 	roughnessMap6,
-	// 	map7,
-	// 	roughnessMap7,
-	// 	metalnessMap7,
-	// 	map8,
-	// 	lightMap8,
-	// 	roughnessMap8,
-	// 	empty,
-	// ] = useTexture([
-	// 	`./media/textures/marble.jpg`,
-	// 	`./media/textures/marble_displacement.jpg`,
-	// 	`./media/textures/marble_roughness.jpg`,
-	// 	`./media/textures/gold_roughness.png`,
-	// 	`./media/textures/Tiles4.jpg`,
-	// 	`./media/textures/Tiles4_roughness.jpg`,
-	// 	`./media/textures/Tiles.jpg`,
-	// 	`./media/textures/Tiles_roughness.jpg`,
-	// 	`./media/textures/Tiles2.jpg`,
-	// 	`./media/textures/Tiles2_roughness.jpg`,
-	// 	`./media/textures/MetalPlates.jpg`,
-	// 	`./media/textures/MetalPlates_roughness.jpg`,
-	// 	`./media/textures/MetalPlates_metalness.jpg`,
-	// 	`./media/textures/Ice.jpg`,
-	// 	`./media/textures/Ice_displacement.jpg`,
-	// 	`./media/textures/Ice_roughness.jpg`,
-	// 	`./media/textures/empty.png`,
-	// ]);
 
 	const themes = [
 		{
@@ -201,7 +133,6 @@ const useTheme = () => {
 			colorEnd: "#86D9BD",
 			wallMaterial: false,
 			skullMaterial: false,
-			// material: (color) => <meshMatcapMaterial color={color} />,
 			material: <meshMatcapMaterial color={"#68ab8e"} />,
 		},
 		{
@@ -222,7 +153,6 @@ const useTheme = () => {
 			skullMaterial: false,
 			material: (
 				<meshStandardMaterial
-					// color={color}
 					color="#e34267"
 					roughnessMap={roughnessMap2}
 					map={empty}
@@ -256,7 +186,6 @@ const useTheme = () => {
 			skullMaterial: false,
 			material: (
 				<meshStandardMaterial
-					// color={color}
 					color={"#fba063"}
 					roughnessMap={roughnessMap2}
 					map={empty}
@@ -290,7 +219,6 @@ const useTheme = () => {
 			skullMaterial: false,
 			material: (
 				<meshStandardMaterial
-					// color={color}
 					color={"#a64dbf"}
 					metalness={1}
 					roughness={0.5}
@@ -341,7 +269,6 @@ const useTheme = () => {
 			wallMaterial: false,
 			skullMaterial: false,
 			material: <meshMatcapMaterial color={"#f38bf5"} />,
-			// material: (color) => <meshMatcapMaterial color={color} />,
 		},
 		{
 			secondaryColor: "#b7bebd",
@@ -356,9 +283,6 @@ const useTheme = () => {
 					map={map8}
 					lightMap={lightMap8}
 					roughnessMap={roughnessMap8}
-					// alphaMap={empty}
-					// aoMap={empty}
-					// metalnessMap={empty}
 				/>
 			),
 		},
@@ -369,7 +293,6 @@ const useTheme = () => {
 			colorEnd: "#2CCBDB",
 			wallMaterial: false,
 			skullMaterial: false,
-			// material: (color) => <meshMatcapMaterial color={color} />,
 			material: <meshMatcapMaterial color={"#3c9df1"} />,
 		},
 		{
