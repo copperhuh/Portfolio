@@ -3198,6 +3198,7 @@ No matching component was found for:
 			width: 8.7rem;
 			margin: 0 0.6rem;
 			height: 100%;
+			max-height: 124px;
 		}
 		@media (max-width: 1550px) {
 			grid-column: 6/31;
@@ -3279,6 +3280,7 @@ No matching component was found for:
 		display: flex;
 		font-family: "Montserrat", sans-serif;
 		height: fit-content;
+		min-height: 100%;
 		box-sizing: border-box;
 		position: relative;
 		justify-content: space-between;
@@ -3535,6 +3537,7 @@ No matching component was found for:
 		.letter-container {
 			width: 8.7rem;
 			height: 100%;
+			max-height: 120px;
 		}
 		@media (max-width: 1200px) {
 			width: 100%;
@@ -4422,6 +4425,7 @@ No matching component was found for:
 		.letter-container {
 			width: 8.7rem;
 			height: 100%;
+			max-height: 120px;
 		}
 		@media (max-width: 1450px) {
 			grid-row: 2/5;
@@ -4922,6 +4926,7 @@ No matching component was found for:
 		.letter-container {
 			width: 11.8rem;
 			height: 100%;
+			max-height: 120px;
 		}
 		@media (max-width: 1450px) {
 			grid-row: 2/5;
