@@ -29,6 +29,7 @@ const ContactStyled = styled.div`
 		.letter-container {
 			width: 8.7rem;
 			height: 100%;
+			max-height: 120px;
 		}
 		@media (max-width: 1200px) {
 			width: 100%;

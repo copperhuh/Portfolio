@@ -31,6 +31,7 @@ const AboutStyled = styled.div`
 			width: 8.7rem;
 			margin: 0 0.6rem;
 			height: 100%;
+			max-height: 124px;
 		}
 		@media (max-width: 1550px) {
 			grid-column: 6/31;
@@ -112,6 +113,7 @@ const AboutStyled = styled.div`
 		display: flex;
 		font-family: "Montserrat", sans-serif;
 		height: fit-content;
+		min-height: 100%;
 		box-sizing: border-box;
 		position: relative;
 		justify-content: space-between;

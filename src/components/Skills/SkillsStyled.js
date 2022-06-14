@@ -30,6 +30,7 @@ const SkillsStyled = styled.div`
 		.letter-container {
 			width: 8.7rem;
 			height: 100%;
+			max-height: 120px;
 		}
 		@media (max-width: 1450px) {
 			grid-row: 2/5;

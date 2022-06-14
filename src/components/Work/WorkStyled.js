@@ -40,6 +40,7 @@ const WorkStyled = styled.div`
 		.letter-container {
 			width: 11.8rem;
 			height: 100%;
+			max-height: 120px;
 		}
 		@media (max-width: 1450px) {
 			grid-row: 2/5;
