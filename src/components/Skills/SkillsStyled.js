@@ -6,6 +6,10 @@ const SkillsStyled = styled.div`
 	display: grid;
 	grid-template: repeat(20, 1fr) / repeat(30, 1fr);
 
+	@media (max-width: 650px) {
+		z-index: 2;
+	}
+
 	.title {
 		padding: 1rem;
 		grid-column: 7/31;

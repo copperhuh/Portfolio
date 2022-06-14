@@ -21,6 +21,8 @@ export default function Contact({
 	const windowWidth = useWindowWidth();
 	const [action, setAction] = useState(null);
 	useEffect(() => {
+		document.documentElement.scrollTop = 0;
+
 		setTimeout(() => {
 			setContainerBlur(true);
 			setAction("waiting");

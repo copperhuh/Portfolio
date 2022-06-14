@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import svgLetterData from "../../svgLetterData";
 import Letter from "./../Letter";
 import SvgWord from "./../SvgWord";
@@ -24,7 +24,10 @@ export default function Work({
 	const windowWidth = useWindowWidth();
 
 	const [action, setAction] = useState(null);
+
 	useEffect(() => {
+		document.documentElement.scrollTop = 0;
+
 		setTimeout(() => {
 			setContainerBlur(true);
 			setAction("waiting");

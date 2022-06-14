@@ -6,6 +6,11 @@ const WorkStyled = styled.div`
 	max-height: 100%;
 	display: grid;
 	grid-template: repeat(20, 1fr) / repeat(30, 1fr);
+
+	@media (max-width: 650px) {
+		z-index: 2;
+	}
+
 	.left-section,
 	.bottom-section,
 	.right-section {

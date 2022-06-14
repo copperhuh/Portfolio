@@ -16,6 +16,8 @@ export default function Skills({
 
 	const [action, setAction] = useState(null);
 	useEffect(() => {
+		document.documentElement.scrollTop = 0;
+
 		setTimeout(() => {
 			setContainerBlur(true);
 			setAction("waiting");

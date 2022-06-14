@@ -6,6 +6,9 @@ const ContactStyled = styled.div`
 	display: grid;
 	grid-template: repeat(20, 1fr) / repeat(30, 1fr);
 
+	@media (max-width: 650px) {
+		z-index: 2;
+	}
 	.title {
 		padding: 1rem 0;
 		grid-column: 1/29;

@@ -53,7 +53,7 @@ const HeaderStyled = styled.div`
 		align-items: center;
 		@media (max-width: 700px) {
 			flex-wrap: wrap-reverse;
-			justify-content: end;
+			justify-content: flex-end;
 			width: 70%;
 			.break {
 				margin-left: 15rem;
