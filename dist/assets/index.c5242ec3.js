@@ -3780,7 +3780,7 @@ No matching component was found for:
 			}
 
 			.submit-btn {
-				justify-content: end;
+				justify-content: flex-end;
 				margin-bottom: 0.5rem;
 				button {
 					font-family: "Montserrat", sans-serif;
@@ -4560,7 +4560,7 @@ No matching component was found for:
 				width: 100%;
 				height: 16%;
 				display: flex;
-				justify-content: end;
+				justify-content: flex-end;
 				align-items: center;
 				font-size: 1.7rem;
 				padding-bottom: 0.7rem;
@@ -5140,11 +5140,11 @@ No matching component was found for:
 		padding: 0 1.4rem 0 0;
 		text-align: right;
 		.flex {
-			align-items: end;
+			align-items: flex-end;
 			order: 3;
 		}
 		.techs {
-			justify-content: end;
+			justify-content: flex-end;
 		}
 		.description {
 			text-align: right;

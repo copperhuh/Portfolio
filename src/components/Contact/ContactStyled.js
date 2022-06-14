@@ -275,7 +275,7 @@ const ContactStyled = styled.div`
 			}
 
 			.submit-btn {
-				justify-content: end;
+				justify-content: flex-end;
 				margin-bottom: 0.5rem;
 				button {
 					font-family: "Montserrat", sans-serif;

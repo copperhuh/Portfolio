@@ -258,11 +258,11 @@ const WorkStyled = styled.div`
 		padding: 0 1.4rem 0 0;
 		text-align: right;
 		.flex {
-			align-items: end;
+			align-items: flex-end;
 			order: 3;
 		}
 		.techs {
-			justify-content: end;
+			justify-content: flex-end;
 		}
 		.description {
 			text-align: right;
