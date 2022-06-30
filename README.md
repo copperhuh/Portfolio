@@ -1,15 +1,11 @@
-# Portfolio
-![Screenshot 1](https://github.com/copperhuh/Portfolio/blob/master/src/screenshots/ss-portfolio.png?raw=true)
-
 # PORTFOLIO
+![Screenshot 1](https://github.com/copperhuh/Portfolio/blob/master/src/screenshots/ss-portfolio.png?raw=true)
 
 My personal portfolio website, built with React Three Fiber. The site uses complex use-Spring animations on DOM elements, 3D models, and vector graphic paths to ensure fluidity when changing between 13 unique visual themes. Features asynchronous message sending to an API, handling the initial website loading by using React Suspense, and full responsiveness.
 
 ## Demo
 
 [Github Pages](https://copperhuh.github.io/Portfolio/)
-
-![Screenshot 2](https://github.com/copperhuh/SortDemon/blob/main/screenshots/Screenshot-1.png?raw=true)
 
 ## Table of Contents
 
