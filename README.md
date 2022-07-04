@@ -62,6 +62,64 @@ Start the server
 
 ## How It Works
 
+### Handling Initial Asset Loading
+
+Since all the texture, 3D model, and scene loading takes some time and happens immediately on page load, there was a need for a loader to obscure the unloaded site in the beginning. The idea I came up with, was to create a component that I would pass as a fallback prop to a React Suspense that was wrapped around the component that finishes loading last. This component wouldn’t actually return anything and would only have a useEffect hook, which returns a function call that changes parent’s state signalling that the loading has ended.
+
+```javascript
+export default function Loading({ setLoaded }) {
+	useEffect(() => {
+		return () => setTimeout(() => setLoaded(true), 100);
+	}, []);
+	return;
+}
+```
+
+```javascript
+function Scene({ setLoaded, ... }) {
+	...
+	return (
+		<>
+			...
+			<Suspense fallback={<Loading setLoaded={setLoaded} />}>
+				<group>{animation}</group>
+				<Skull ... />
+			</Suspense>
+		</>
+	);
+}
+```
+
+It works, since useEffect’s return behaves like componentWillUnmout and we know it will unmount when React Suspense hides its fallback - so only after the component it wraps finishes loading. With this setup have state with information whether everything is loaded or not, and we then can conditionally show a load screen component at the top level of the app with a smooth CSS animation (if it was a JS animation it wouldn’t work, since JS is busy loading)
+
+```javascript
+function App() {
+	...
+
+	const [loaded, setLoaded] = useState(false);
+	const [loadScreenOpen, setLoadScreenOpen] = useState(true);
+	const [landingOpen, setLandingOpen] = useState(false);
+	
+	...
+
+	return (
+		<>
+			...
+			{loadScreenOpen && (
+				<LoadingScreen
+					setLoadScreenOpen={setLoadScreenOpen}
+					setLandingOpen={setLandingOpen}
+					loaded={loaded}
+				/>
+			)}
+			...
+		</>
+	);
+}
+```
+
+
+
 Since I am quite proud of how the visualization feature was implemented, I will explain how it works the best that I can.
 
 To put it plainly, all logic takes place in a custom **hook**, that calls an **async function** that yields from a **generator function** specific to the chosen sorting algorithm.
