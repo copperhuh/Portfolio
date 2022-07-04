@@ -82,7 +82,6 @@ function Scene({ setLoaded, ... }) {
 		<>
 			...
 			<Suspense fallback={<Loading setLoaded={setLoaded} />}>
-				<group>{animation}</group>
 				<Skull ... />
 			</Suspense>
 		</>
