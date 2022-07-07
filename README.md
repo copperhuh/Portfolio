@@ -167,6 +167,58 @@ const getColorFromRange = ( color1, color2, idx, leng, n, type = "index") => {
 };
 ```
 
+### Skull's Idle Animation
+
+From the beginning I wanted the skull to move like it was floating in zero gravity, so I decided that the animation should be done with use-Spring for maximum smoothness. Skull's mesh's props 'rotationX', 'rotationY', 'rotationZ', and 'positionY' are animated with separate useSpring hooks so that the skull rotates on all axes and slightly hovers up and down at the same time. As to why the skull moves seemingly at random - the specific spring's 'config' object I used has the 'friction' parameter set to 0, this means that at no point does the animation noticeably bounce to loop - that in combination with the fact that each axis animation is separate makes the skull movement look random.  
+
+```javascript
+const { x } = useSpring({
+	loop: true,
+	to: [{ x: (Math.PI * 4) / 10 }, { x: (Math.PI * 6) / 10 }],
+	from: { x: (Math.PI * 5.5) / 10 },
+	delay: 2,
+	config: { mass: 100, tension: 300, friction: 0 },
+	pause: !moveSkull,
+});
+
+const { y } = useSpring({
+	loop: true,
+	to: [{ y: (Math.PI * 9.5) / 10 }, { y: (Math.PI * 10.5) / 10 }],
+	from: { y: (Math.PI * 10.5) / 10 },
+	delay: 2,
+	config: { mass: 100, tension: 250, friction: 0 },
+	pause: !moveSkull,
+});
+
+const { z } = useSpring({
+	loop: true,
+	to: [{ z: (Math.PI * 8) / 4 }, { z: (Math.PI * 9.5) / 4 }],
+	from: { z: (Math.PI * 9.5) / 4 },
+	config: { mass: 100, tension: 100, friction: 0 },
+	pause: !moveSkull,
+});
+
+const { v } = useSpring({
+	loop: true,
+	to: [{ v: 2 }, { v: 1.8 }],
+	from: { v: 1.8 },
+	config: { mass: 20, tension: 100, friction: 0 },
+	pause: !moveSkull,
+});
+```
+
+### Skull's OnClick Animation
+
+There are two skulls always present - the main one that is always visible and has the current visual theme (the same theme as the background), and there is also another very small skull hidden inside the main one. The small skull always has the theme that's next in the queue and when the main skull is clicked the small skull grows at the same time that the main one shrinks to give the illusion that the next theme fluidly overtakes the current one. Then only when the main skull is fully obscured by the enlarged small skull, the main skull's theme is changed (at that moment both skulls have the same theme). After the main skull changes its theme, both skulls' sizes bounce back - the main skull comes to the front and the small one becomes small again - then the small skull's theme is changed to the next one up in the queue and is ready for another click animation. 
+
+The animation is the way it is to ensure that the user doesn't see the skulls when their theme is changing - since some themes have textures or even change the whole material of the mesh, the change looks jarring and even sometimes flickers for a moment.
+
+### Skull's White Outline
+
+The outline was originally added to be a visual indicator that the skull is clickable, but in hindsight, I don't really think that it achieves that goal. Nonetheless, I left it in since I think it looks nice. 
+
+The outline is just the same model as the skull, only larger and its mesh has a lesser 'renderOrder' prop's value than the colored skull. Also, the outline skull's material is 'meshBasicMaterial' (hence no shading) with 'depthTest' and 'depthWrite' props set to false.
+
 ## Appendix
 
 SORT DEMON is a visualizer of sorting algorithms. It is meant to be used as a tool for learning **how the algorithms act and how they contrast from one another**. I did **not** design it to accurately show the relative speed of the algorithms, since I deemed it would make the faster algorithms less “readable”. Please keep that in mind while using the site.
