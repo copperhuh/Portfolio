@@ -219,17 +219,19 @@ The outline was originally added to be a visual indicator that the skull is clic
 
 The outline is just the same model as the skull, only larger and its mesh has a lesser 'renderOrder' prop's value than the colored skull. Also, the outline skull's material is 'meshBasicMaterial' (hence no shading) with 'depthTest' and 'depthWrite' props set to false.
 
+### Async Message Sending With Getform
+
+Message sending from the contact section is handled by [Getform](https://getform.io/)'s API. The messages are sent asynchronously to their database and are visible on the dashboard of my Getform account 
+
 ## Appendix
 
-SORT DEMON is a visualizer of sorting algorithms. It is meant to be used as a tool for learning **how the algorithms act and how they contrast from one another**. I did **not** design it to accurately show the relative speed of the algorithms, since I deemed it would make the faster algorithms less “readable”. Please keep that in mind while using the site.
+### Problems 
 
-### About Algorithms
+-	There seems to be a bug that makes it so that after a theme change, some rings don't manage to switch themes and stick out from the rest. I think the problem occurs only when the site is lagging but I'm not 100% certain. Nevertheless, the problem is always fixed after another theme change.
 
-There can be up to 9 algorithms running at the same time. If after adding a new algorithm, only its name appears, just click the **reset** or **shuffle** button to show it entirely. Also, note that **removing an algorithm in the middle of the runtime** can lead to some strange behavior that is also easily fixed with a **reset** or **shuffle**. Another thing - the more structurally complex algorithms (like the ones using recursion) have to **run in their entirety** before recreating their steps on the screen. I say that because that initial run in the background can lead to a **slight lag** when starting the visualization with a **large array size** and **multiple of these complex algorithms**.
+-	An issue with the appearance of the skull textures on some mobile devices. At the moment I really don't have the resources to check what causes the problem - it appears on some IOS devices but looks perfect on other IOS devices and desktops. 
 
-### About Descriptions
-
-**I do not take credit for any of the descriptions’ contents** - proper sources are linked at the bottom of each description. This is a **personal project** - the description functionality is just a feature that I thought would be nice to implement and thought that authentic articles would look better than some Lorem Ipsum boilerplate text. I strongly recommend everyone to visit the websites from which I got the articles - all of them are great resources for learning computer science-related topics.
+-	Overall performance problems on some less powerful devices eg. older phones, and laptops (noticeable lag in all 3D object movement). 
 
 ## Author
 
