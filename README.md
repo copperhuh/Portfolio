@@ -12,7 +12,6 @@ My personal portfolio website, built with React Three Fiber. The site uses compl
 -   [Technologies](#Technologies)
 -   [Run Locally](#Run-Locally)
 -   [How It Works](#How-It-Works)
--   [Inspiration](#Inspiration)
 -   [Appendix](#Appendix)
 -   [Author](#Author)
 -   [Feedback](#Feedback)
