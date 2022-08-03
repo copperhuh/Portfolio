@@ -4,6 +4,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { animated, useSpring } from "@react-spring/web";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import HeaderStyled from "./HeaderStyled";
+import CV from "../../CV-Jakub-Koper.pdf";
 
 export default function Header({
 	contrastColor,
@@ -88,10 +89,24 @@ export default function Header({
 						</span>
 					</div>
 					<div>
-						<span className="link">CV</span>
+						<a target="_blank" href={CV} className="link">
+							CV
+						</a>
 					</div>
-					<GitHubIcon />
-					<LinkedInIcon />
+					<a
+						href="https://github.com/copperhuh"
+						target="_blank"
+						className="link"
+					>
+						<GitHubIcon />
+					</a>
+					<a
+						href="https://www.linkedin.com/in/jakub-koper-935609247/"
+						target="_blank"
+						className="link"
+					>
+						<LinkedInIcon />
+					</a>
 				</div>
 			</animated.div>
 		</HeaderStyled>

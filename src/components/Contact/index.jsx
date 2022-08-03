@@ -377,7 +377,11 @@ export default function Contact({
 			>
 				<GitHubIcon /> <div>Github</div>
 			</a>
-			<a href="" target="_blank" className="link">
+			<a
+				href="https://www.linkedin.com/in/jakub-koper-935609247/"
+				target="_blank"
+				className="link"
+			>
 				<LinkedInIcon /> <div>LinkedIn</div>
 			</a>
 			<a href="mailto: jakub.koper@wpc-huh.com" className="link">

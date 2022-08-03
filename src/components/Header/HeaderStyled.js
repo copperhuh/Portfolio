@@ -38,11 +38,16 @@ const HeaderStyled = styled.div`
 			user-select: none;
 			z-index: 1;
 		}
+		a {
+			color: ${(props) => props.color};
+			text-decoration: none;
+		}
 		.MuiSvgIcon-root {
 			padding: 0 0.2rem;
 			font-size: 1.2rem;
 			transition: 0.2s;
 			transform: scale(1);
+			color: ${(props) => props.color};
 			:hover {
 				transition: 0.2s;
 				transform: scale(1.2);
