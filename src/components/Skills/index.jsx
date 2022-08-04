@@ -16,7 +16,7 @@ export default function Skills({
 
 	const [action, setAction] = useState(null);
 	useEffect(() => {
-		document.documentElement.scrollTop = 0;
+		document.documentElement.scrollTop = 0;s
 
 		setTimeout(() => {
 			setContainerBlur(true);
