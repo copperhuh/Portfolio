@@ -147,7 +147,7 @@ export default function Work({
 				"Simulation of the war card game, built only with vanilla JavaScript, HTML and CSS.",
 			techs: ["JavaScript", "CSS", "HTML"],
 			img: warSS,
-			live: "https://copperhuh.github.io/PathDemon/",
+			live: "https://copperhuh.github.io/WAR/",
 			github: "https://github.com/copperhuh/WAR",
 		},
 		{
@@ -164,8 +164,8 @@ export default function Work({
 				"Styled Components",
 			],
 			img: portfolioSS,
-			live: "https://copperhuh.github.io/PathDemon/",
-			github: "https://github.com/copperhuh/WAR",
+			live: "https://copperhuh.github.io/Portfolio/",
+			github: "https://github.com/copperhuh/Portfolio",
 		},
 	];
 	const [projectIdx, setProjectIdx] = useState(0);
